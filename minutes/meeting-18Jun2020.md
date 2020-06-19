@@ -17,7 +17,7 @@
 ### Notes from discussion
 
 - We exchanged quite a bit on LSJ short definitions: various versions derived from Perseus' XML version and used ni other projects (Diogenes, Logeion, Eulexis)
-- Use of Eulexis Desktop (rather than a Web solution) to verify French definitions from Baillot aligned with lemmata from LSJ/Perseus
+- Use of Eulexis Desktop (rather than a Web solution) to verify French definitions from Bailly aligned with lemmata from LSJ/Perseus
 - once we have an online presence (GH repository) we can advertise our activities on French speaking mailing lists to find volunteers 
 - how to prioritise the list of lemmata to verify: project-based? on basis of corpus frequency? 
 
