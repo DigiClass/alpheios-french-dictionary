@@ -1,3 +1,3 @@
-# alpheios-french-dictionary
+# Alpheios French dictionary
 
 This repository contains materials related to work aimed at adding French definitions to the open source tool Alpheios.

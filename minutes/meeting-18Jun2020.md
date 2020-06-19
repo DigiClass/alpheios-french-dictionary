@@ -1,14 +1,12 @@
 # Meeting 18.06.2020
 
-[TOC]
-
 ## Agenda
 
 1. (30 mins max) "tour de la table"/ round of introductions
 2. Recap of previous exchanges on the preliminary work done by PV
 3. Agree on how to proceed next for manual verification of French definitions from Eulexis that could not be found automatically in Perseus' LSJ data
 4. Agree on a platform to work, discuss and exchange data
-5. agree on email to G. Greco (see draft below)
+5. agree on email to G. Greco
 
 ## Minutes
 
@@ -38,6 +36,7 @@
 ### Action points
 
 - [ ] HD shares with PV her version of Perseus' LSJ short definitions
+- [ ] MR to draft and share email to Gerardo Greco
 - [ ] MR to set up the public GH repository + basic description in README
 - [ ] PV to identify/prioritise lemmata needing manual verification + divide into batches
 - [ ] MR/PV (+ others?) to try out and document in more detail the verification workflow
