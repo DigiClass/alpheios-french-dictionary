@@ -36,7 +36,7 @@
 ### Action points
 
 - [ ] HD shares with PV her version of Perseus' LSJ short definitions
-- [ ] MR to draft and share email to Gerardo Greco
+- [ ] MR to draft and share email to Gérard Gréco
 - [ ] MR to set up the public GH repository + basic description in README
 - [ ] PV to identify/prioritise lemmata needing manual verification + divide into batches
 - [ ] MR/PV (+ others?) to try out and document in more detail the verification workflow
