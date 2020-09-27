@@ -18,11 +18,11 @@ Je mets dans le dossier **raw_data** le vieux fichier de sens (extrait avec un p
 - `Bailly_es_probl.csv` : le sens est non-vide et le renvoi est non-vide
 
 Le format est composé de 5 champs :
-    1. Le lemme
-    2. L'entrée secondaire (éventuellement plusieurs variantes)
-    3. Le sens trouvé (éventuellement vide)
-    4. Le renvoi (éventuellement vide)
-    5. La longueur du sens trouvé (nombre de caractères)
+1. Le lemme
+2. L'entrée secondaire (éventuellement plusieurs variantes)
+3. Le sens trouvé (éventuellement vide)
+4. Le renvoi (éventuellement vide)
+5. La longueur du sens trouvé (nombre de caractères)
 
 A priori, le fichier le plus simple à utiliser est celui avec des sens et sans renvoi : il est plus ou moins équivalent à un renvoi de la variante (deuxième colonne) vers l'entrée (première colonne). Le fichier avec des renvois (et pas de sens) peut être compliqué par les renvois multiples que je mentionnais plus tôt (le 17 septembre). Dans les cas simples, il est équivalent à un renvoi de la variante vers le renvoi (4e colonne). Le fichier problématique doit être regardé avec attention, car en principe il ne devrait pas y avoir, dans un même article, un sens et un renvoi.
 
