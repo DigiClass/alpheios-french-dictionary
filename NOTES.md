@@ -1,14 +1,47 @@
 # Alpheios Ancient Greek → French dictionary
 
-## Notes sur les fichiers que je mets dans le dossier "raw_data".
+## "Théorie"
+------------
 
-A priori, je vais essayer de dater mes commentaires qu'il faut considérer comme des *mises à jour*, c'est à dire qu'il faudrait les lire *de bas en haut*.
+Le but n'est pas de **constituer un lexique** mais seulement de **donner des traductions** à un lexique existant. Cela simplifie notablement le problème et, en particulier, ne nécessite pas de faire le tri entre les entrées qui sont des *vrais lemmes* et celles qui donnent des formes verbales ou dialectales. Il convient toutefois de conserver toutes les entrées du Bailly pour avoir le maximum d'informations.
+
+On a donc, d'une part, un **lexique** avec les *lemmes* auxquels on souhaite donner une traduction et, d'autre part, une **collection de fichiers** contenant les *entrées* et les sous-entrées du Bailly. On a plusieurs fichiers pour des raisons techniques ou des raisons d'organisation des données (voir plus bas). On pourrait regrouper ces fichiers en un seul, mais cela n'apporterait pas grand chose. Le but du jeu est de mettre en face de chaque *lemme* du lexique **toutes** les entrées qui correspondent à cette forme. Pour cela, on tient compte des diacritiques et de l'éventuelle majuscule, mais pas des numéros d'homonymie. En effet, des lemmes avec ou sans majuscule, comme Κάρ et κάρ, sont clairement distincts et les numéros d'homonymie ne sont pas nécessairement les mêmes dans le lexique et dans les dictionnaires. C'est donc une recherche simple d'une forme dans plusieurs listes et qui peut conduire à diverses situations en fonction du nombre de résultats.
+- une seule entrée correspond au *lemme* recherché : on va supposer que c'est la bonne et donner la traduction trouvée (éventuellement, en suivant les renvois).
+- aucune entrée ne correspond au *lemme* : la traduction restera vide, à moins qu'un Helléniste n'identifie la bonne entrée ou donne une traduction.
+- plusieurs entrées correspondent au *lemme* : il faut faire le tri...
 
 ### Remarque générale
 
 Je produis souvent des fichiers **.csv**, où le séparateur est la **tabulation**. Les caractères sont évidemment codés en UTF-8, ce qui pose des problèmes quasiment insurmontables à la _suite de Microsoft®_ et en particulier à _Excel®_ ($$$). _LibreOffice_ ouvre parfaitement ce type de fichiers et je recommande de mettre _Excel®_ à la poubelle dès que possible.
 
 L'intérêt des fichiers **.csv** est qu'ils sont faciles à écrire (c'est du texte). De plus, on peut les lire avec un éditeur de texte banal ou les mettre dans un tableur (sauf Excel®) pour que les champs soient bien alignés. Le tableur permet aussi de trier ou de filtrer les nombreux champs.
+
+### Un ou deux mots
+
+C'est une question qui va se poser souvent. Par exemple, lorsqu'un mot peut venir de deux racines différentes :
+
+````
+αἱρετός, ή, όν : 
+I (αἱρέω, prendre) 
+1 qui peut être pris, HDT. 4, 201 
+2 fig. qui peut être saisi par l’intelligence ou compris, PLAT. Phæd. 81 b 
+II (αἱρέομαι, choisir) 
+1 choisi, élu : δικασταὶ αἱρ. PLAT. Leg. 759 b, etc. juges élus (p. opp. à κληρωτοί) ; αἱρ. ἀρχή, ISOCR. 265 a ; ARSTT. Pol. 2, 12, 2, magistrature élective ; οἱ αἱρετοί, XÉN. An. 1, 3, 21, hommes choisis ou élus (pour une délégation), délégués, commissaires 
+2 qu’on peut ou qu’on doit choisir, souhaitable, HDT. 1, 126 ; ARSTT. Nic. 1, 7, 4, etc. ; p. opp. à φευκτός, PLAT. Phil. 21 d ║ Cp. -ώτερος, HDT. 7, 46 ; XÉN. Cyr. 2, 1, 2, etc. Sup. -ώτατος, PLAT. Crat. 415 d, etc. 
+````
+
+ou peut avoir deux genres différents :
+
+````
+κώμυς, υθος (ὁ, ἡ) [ῡθ] 
+1 ἡ κ. botte de fourrage, CRAT. (Com. fr. 2, 226) ; THCR. Idyl. 4, 18 
+2 ὁ κ. lieu planté de roseaux, TH. H.P. 4, 11, 1.
+````
+
+## Notes sur les fichiers que je mets dans le dossier "raw_data".
+------------------
+
+A priori, je vais essayer de dater mes commentaires qu'il faut considérer comme des *mises à jour*, c'est à dire qu'il faudrait les lire *de bas en haut*. Je ne garantis pas que je n'ajouterai pas quelque chose dans un paragraphe déjà écrit à une date antérieure.
 
 ## Dimanche 27 septembre 2020
 
@@ -35,18 +68,22 @@ J'ai fini une relecture rapide des *entrées vides* et récupéré quelques lien
 L'exemple donné vendredi dernier a soulevé des questions intéressantes liés aux formes contractes (et au choix du dialecte). Helma a fait une entorse au LSJ en choisissant ζήω comme lemme. Bastien est d'avis que ζάω est le lemme.
 Un cas plus anodin de choix de lemmes est reproduit ci-dessous :
 
-````LSJ 1940 :
+````
+LSJ 1940 :
  
 ἀστροβολησία ἡ, sun-scorch, in plants, Thphr. CP 5.9.4 (nisi leg. ἀστροβλησία). 
 
-ἀστροβλησία ἡ, prob. l. for -βολησία.```` 
+ἀστροβλησία ἡ, prob. l. for -βολησία.
+```` 
 
-````Bailly 2020 : 
+````
+Bailly 2020 : 
 
 ἀστροϐολησία, var. p. ἀστροϐλησία.
 
 ἀστροϐλησία, ας (ἡ) insolation, TH. C.P. 5, 9, 4
-    Étym. : ἀστρόϐλητος.````
+    Étym. : ἀστρόϐλητος.
+````
 
 On a bien un cas où le LSJ a choisi **ἀστροβολησία** comme lemme alors que Bailly donne **ἀστροϐλησία**, chacun donnant un renvoi de l'autre forme vers le lemme retenu. Cela dit, Eulexis ne connaît que la forme du LSJ. Pape lui ne connaît que la 2e forme (le lemme du Bailly)
 
@@ -55,19 +92,23 @@ On a bien un cas où le LSJ a choisi **ἀστροβολησία** comme lemme 
 
 L'exemple qui me manquait hier (peut-être pas le meilleur, mais le premier que je trouve)
 
-````LSJ 1940 :
+````
+LSJ 1940 :
 
 ζάω v. ζῶ. 
 
-ζῶ (contr. fr. ζώω ; ζάω only in Gramm., EM 410.38), ζῇς (Choerob. in Theod. 2.28), ζῇ, ζῆτε (but ζῆς, ζῆ acc. to Anon. ap. EM 410.48, ...````
+ζῶ (contr. fr. ζώω ; ζάω only in Gramm., EM 410.38), ζῇς (Choerob. in Theod. 2.28), ζῇ, ζῆτε (but ζῆς, ζῆ acc. to Anon. ap. EM 410.48, ...
+````
 
-````Bailly 2020 :
+````
+Bailly 2020 :
 
 ζάω-ῶ ou mieux ζήω-ῶ (avec contract. en η, d’où prés. ζῶ, ζῇς, ζῇ ; impér. ζῆ, opt. ζῴην ; inf. ζῆν ; impf. ἔζων, ἔζης, ἔζη, ἐζῶμεν, ἐζῆτε, ἔζων ; fut. ζήσω ou ζήσομαι ; ao. ἔζησα, pf. ἔζηκα, pl. q. pf. ἐζήκειν ; ttef. au lieu d’ ἔζησα, ἔζηκα, ἐζήκειν, les ...
 
 ζῶ, contr. de ζήω.
 
-ζήω, v. ζάω.````
+ζήω, v. ζάω.
+````
 
 
 ## Jeudi 17 septembre 2020
