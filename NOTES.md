@@ -53,14 +53,14 @@ A priori, je vais essayer de dater mes commentaires qu'il faut considérer comme
 Je dépose une série de fichiers qui correspondent au traitement des cas simples (définis plus bas). Les fichiers **txt** contiennent des données brutes, alors que les **csv** sont le résultat d'un traitement (en réalité, les fichiers txt sont aussi issus du traitement de mon fichier intermédiaire). Le fichier zippé, `Bailly_tout.txt.zip` (qui était un peu trop gros et assez inutile), correspond à mon fichier intermédiaire, dans lequel j'ai explicité les substantifs abrégés (sous la forme *{ὁ ἀγ.}*) et remplacé les renvois au mot suivant ou précédent par ledit mot. Le fichier `Bailly_vide.txt` contient les entrées pour lesquelles je n'ai pas su isoler de sens (il y en a 2 975). Elles semblent correspondre à des formes verbales qui se contentent de renvoyer au verbe (en précisant les temps et mode). Le troisième fichier, `Bailly_complex.txt`, contient les entrées que j'ai considérées comme complexes et que je dois encore traiter. Il y en a 16 740...
 
 Les trois fichiers **csv** sont, a priori, les plus intéressants. Comme je l'ai déjà dit, c'est des fichiers texte en UTF-8 et les champs sont séparés par des tabulations. Le nombre de champs dépend du fichier, et même de l'entrée.
-- Le fichier `Bailly_renv.csv` contient les entrées identifiées comme des renvois (il y en a 15 430). Les lignes contiennent deux champs principaux : l'entrée et le renvoi. Viennent ensuite les indications trouvées : désinences (*des*), génitif (*gens*) et article (entre parenthèses), éventuellement aussi quelques mots clefs. Elles sont aussi, en général, séparées par des tabulations, mais je pourrais modifier mon code pour que tout ce qui relève des *indications* soit dans un seul champ. Il faut noter que je n'ai pas vérifié si le renvoi existe, comme entrée ou sous-entrée. Mais il n'est pas nécessaire de vérifier que tous les renvois mènent quelque part, puisqu'on n'est pas sûr que tous les renvois soient utiles. Quand on fera la recherche d'un lemme (du **lexique**) et qu'on trouvera un renvoi ne menant nulle part, il sera temps de s'en occuper...
+- Le fichier `Bailly_renv.csv` contient les entrées identifiées comme des renvois (il y en a 15 434). Les lignes contiennent deux champs principaux : l'entrée et le renvoi. Viennent ensuite les indications trouvées : désinences (*des*), génitif (*gens*) et article (entre parenthèses), éventuellement aussi quelques mots clefs. Elles sont aussi, en général, séparées par des tabulations, mais je pourrais modifier mon code pour que tout ce qui relève des *indications* soit dans un seul champ. Il faut noter que je n'ai pas vérifié si le renvoi existe, comme entrée ou sous-entrée. Mais il n'est pas nécessaire de vérifier que tous les renvois mènent quelque part, puisqu'on n'est pas sûr que tous les renvois soient utiles. Quand on fera la recherche d'un lemme (du **lexique**) et qu'on trouvera un renvoi ne menant nulle part, il sera temps de s'en occuper...
 ```TSV
 ἀϐουλί	> ἀϐουλήτως	adv. 
 ἁϐροσύνη	> ἁϐρότης	gens : ης	(ἡ) 
 ἁϐροχαίτης	> ἁϐροκόμης	gens : ου,	adj. m. 
 Ἀϐυδηνοκόμης	> Ἀϐυδοκόμης	
 ```
-- Le fichier `Bailly_sens.csv` est le fichier principal. Comme son nom l'indique, il contient les entrées pour lesquelles je pense avoir réussi à isoler un sens (il y en a 15 434). Il contient les entrées (première colonne), le sens trouvé (2e colonne), le nombre de caractères que compte le sens (3e colonne, uniquement pour repérer facilement les sens qui sont trop longs et qui mériteraient d'être abrégés). Viennent ensuite les indications relevées (en nombre variable, comme dans le cas des renvois). On pourra donc avoir des lignes avec trois champs peuplés (typiquement pour un verbe), quatre (souvent pour les adjectifs, avec seulement un *des*), cinq (généralement les noms, avec un *gens* et un article pour donner le genre) et, plus rarement, six (un adjectif avec un *des*, un *gens* et un ou plusieurs mots-clefs, parce qu'il a donné un adverbe ou un substantif).
+- Le fichier `Bailly_sens.csv` est le fichier principal. Comme son nom l'indique, il contient les entrées pour lesquelles je pense avoir réussi à isoler un sens (il y en a 72 652). Il contient les entrées (première colonne), le sens trouvé (2e colonne), le nombre de caractères que compte le sens (3e colonne, uniquement pour repérer facilement les sens qui sont trop longs et qui mériteraient d'être abrégés). Viennent ensuite les indications relevées (en nombre variable, comme dans le cas des renvois). On pourra donc avoir des lignes avec trois champs peuplés (typiquement pour un verbe), quatre (souvent pour les adjectifs, avec seulement un *des*), cinq (généralement les noms, avec un *gens* et un article pour donner le genre) et, plus rarement, six (un adjectif avec un *des*, un *gens* et un ou plusieurs mots-clefs, parce qu'il a donné un adverbe ou un substantif).
 ```TSV
 ἀασμός	exhalaison, souffle,	20	gens : οῦ	(ὁ) 
 1 ἄατος	insatiable de,	14	des : ος, ον	
@@ -70,11 +70,11 @@ Les trois fichiers **csv** sont, a priori, les plus intéressants. Comme je l'ai
 Ἄϐαι	Abes, (v.)	10	gens : ῶν	(αἱ) 
 ```
 - Le fichier `Bailly_subst.csv` contient les substantifs et les adverbes qui sont perdus dans d'autres articles (souvent des adjectifs, parfois des verbes). Comme je n'ai traité que les cas simples, il n'y a que 2 454 lignes. Les lignes sont une fois de plus de longueur variable. Elles donnent :
-    * l'article (pour les substantifs) ou le mot-clef *adv.* (pour les adverbes)
-    * la forme (comme elle était parfois abrégée, je l'ai reconstituée à la main, en espérant ne pas avoir écrit trop d'horreurs -je n'ai aucune connaissance en Grec)
-    * le sens
-    * le lemme (l'entrée du Bailly) où j'ai trouvé ce mot
-    * les indications relatives à l'entrée du dico et **pas** au mot trouvé
+    1. l'article (pour les substantifs) ou le mot-clef *adv.* (pour les adverbes)
+    2. la forme (comme elle était parfois abrégée, je l'ai reconstituée à la main, en espérant ne pas avoir écrit trop d'horreurs -je n'ai aucune connaissance en Grec)
+    3. le sens
+    4. le lemme (l'entrée du Bailly) où j'ai trouvé ce mot
+    5. les indications relatives à l'entrée du dico et **pas** au mot trouvé
 ```TSV
 ἡ	ἐπίτομος	 chemin le plus court ou direct	ἐπίτομος	des : ος, ον,	
 ὁ	ἐπιτυχών	 le premier venu	ἐπιτυγχάνω	
@@ -102,7 +102,7 @@ A priori, le fichier le plus simple à utiliser est celui avec des sens et sans 
 
 ## Vendredi 25 septembre 2020
 
-J'ai fini une relecture rapide des *entrées vides* et récupéré quelques liens et sens. J'ai parcouru également la liste des substantifs et éliminé les cas aberrants.
+J'ai fini une relecture rapide des *entrées vides* et récupéré quelques liens et sens. J'ai parcouru également la liste des substantifs et éliminé des cas aberrants.
 
 ## Lundi 21 septembre 2020
 
@@ -126,7 +126,7 @@ Bailly 2020 :
     Étym. : ἀστρόϐλητος.
 ```
 
-On a bien un cas où le LSJ a choisi **ἀστροβολησία** comme lemme alors que Bailly donne **ἀστροϐλησία**, chacun donnant un renvoi de l'autre forme vers le lemme retenu. Cela dit, Eulexis ne connaît que la forme du LSJ. Pape lui ne connaît que la 2e forme (le lemme du Bailly)
+On a bien un cas où le LSJ a choisi **ἀστροβολησία** comme lemme alors que Bailly donne **ἀστροϐλησία**, chacun donnant un renvoi de l'autre forme vers le lemme retenu. Cela dit, Eulexis ne connaît que la forme du LSJ. Pape lui ne connaît que la 2e forme (le lemme du Bailly).
 
 
 ## Vendredi 18 septembre 2020
@@ -168,7 +168,7 @@ Les renvois posent un problème sérieux, car ils sont nombreux (~15 200) et il 
 
 Il y a une autre famille de renvois que je n'ai pas encore relevés (du moins pas ici) : il s'agit des variantes (ortho)graphiques ou dialectales données par Bailly dans l'article même. Elles sont repérées dans le fichier TeX par la commande **\es{...}** et il y en a 3900. Par exemple, `"\entree{ἀκοστάω} \ital{ou} \es{ἀκοστέω}"` et on n'a pas d'entrée *"ἀκοστέω"* qui renverrait au lemme *"ἀκοστάω"*. Évidemment, il y a aussi des cas où le renvoi explicite existe `(par exemple, βροῦλλον,	> βρύλλον et plus loin, "βρύλλον ou βροῦλλον, ου (τὸ) c. σπάρτον," ; exemple qui illustre aussi le problème des doubles renvois)`.
 
-Au mois d'avril, j'avais essayé une *autre* méthode pour extraire les sens, qui conservait les entrées secondaires. Mais sur laquelle je n'ai pas beaucoup retravaillé. Il faut se méfier des cas où il y a un renvoi et des entrées secondaires, car bien souvent il s'agit d'une collection de mots présentant une variation graphique commune et le renvoi est en réalité une collection de renvois (explicites ou résumés par un *etc.*). Par exemple : `ἀγλαΐη, Ἀγλαΐη, ἀγλαΐηφι, v. ἀγλαΐα, Ἀγλαΐα`.
+Au mois d'avril, j'avais essayé une *autre* méthode pour extraire les sens, qui conservait les entrées secondaires. Mais sur laquelle je n'ai pas beaucoup retravaillé. Il faut se méfier des cas où il y a un renvoi et **des** entrées secondaires, car bien souvent il s'agit d'une collection de mots présentant une variation graphique commune et le renvoi est en réalité une collection de renvois (explicites ou résumés par un *etc.*). Par exemple : `ἀγλαΐη, Ἀγλαΐη, ἀγλαΐηφι, v. ἀγλαΐα, Ἀγλαΐα`.
 
 Pour répondre à Helma qui faisait remarquer que, comme on passe par un outil de lemmatisation, les formes verbales qui renvoient sur le verbe ne serviront pas et ne gênent pas : oui, un outil de lemmatisation renvoie à un **lemme standardisé**. Mais la question qui peut se poser est de savoir **lequel**. Il me semble avoir vu des cas où Bailly et LSJ ont fait des choix opposés. Je n'ai pas d'exemple concret, mais on va considérer deux entrées A et B : il me semble avoir vu dans le LSJ un article complet pour A et un renvoi de B vers A, alors que Bailly donne un renvoi de A vers B et l'article complet est pour B. Comme l'outil de lemmatisation est basé sur le LSJ, le lemme standardisé sera A qui dans le Bailly ne donne qu'un renvoi. Si je retrouve un exemple, je vous l'enverrai. Et j'évite de parler des cas où les accents ou esprits se déplacent ou des cas où les avis divergent (j'ai vu des diminutifs que le LSJ et le Bailly ne rattachent pas au même mot). Mais à ce caveat près, je suis d'accord avec le fait que les renvois liés à des formes verbales ne sont pas utiles, mais probablement pas nuisibles non plus.
 
