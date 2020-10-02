@@ -48,6 +48,10 @@ Il y a aussi un grand nombre de mots avec un préfixe pouvant avoir des sens dif
 
 A priori, je vais essayer de dater mes commentaires qu'il faut considérer comme des *mises à jour*, c'est à dire qu'il faudrait les lire *de bas en haut*. Je ne garantis pas que je n'ajouterai pas quelque chose dans un paragraphe déjà écrit à une date antérieure.
 
+## Vendredi 2 octobre 2020
+
+Hier soir, j'ai poussé sur GitHub mes fichiers et je me suis aperçu ce matin que les dernières modifs dans mon code me faisaient perdre les sens du premier substantif dans une série de deux. Cela ne concerne que 92 cas, mais je l'ai corrigé.
+
 ## Mercredi 30 septembre 2020
 
 Je dépose une série de fichiers qui correspondent au traitement des cas simples (définis plus bas). Les fichiers **txt** contiennent des données brutes, alors que les **csv** sont le résultat d'un traitement (en réalité, les fichiers txt sont aussi issus du traitement de mon fichier intermédiaire). Le fichier zippé, `Bailly_tout.txt.zip` (qui était un peu trop gros et assez inutile), correspond à mon fichier intermédiaire, dans lequel j'ai explicité les substantifs abrégés (sous la forme *{ὁ ἀγ.}*) et remplacé les renvois au mot suivant ou précédent par ledit mot. Le fichier `Bailly_vide.txt` contient les entrées pour lesquelles je n'ai pas su isoler de sens (il y en a 2 975). Elles semblent correspondre à des formes verbales qui se contentent de renvoyer au verbe (en précisant les temps et mode). Le troisième fichier, `Bailly_complex.txt`, contient les entrées que j'ai considérées comme complexes et que je dois encore traiter. Il y en a 16 740...
