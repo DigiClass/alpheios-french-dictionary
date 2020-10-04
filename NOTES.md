@@ -48,9 +48,23 @@ Il y a aussi un grand nombre de mots avec un préfixe pouvant avoir des sens dif
 
 A priori, je vais essayer de dater mes commentaires qu'il faut considérer comme des *mises à jour*, c'est à dire qu'il faudrait les lire *de bas en haut*. Je ne garantis pas que je n'ajouterai pas quelque chose dans un paragraphe déjà écrit à une date antérieure.
 
+## Samedi 3 octobre 2020
+
+J'ai ajouté une comparaison sans diacritique et sans majuscule pour les *lemmes* non-trouvés. Ça me permets de repêcher 4 144 correspondances. Mais certaines ne sont pas convaincantes, car elles associent un mot avec majuscule à un mot sans. Toutefois, on pourrait admettre `? Ὕψιστος	uyistos	ὕψιστος`, d'autant que le LSJ dit *one of the gates of Thebes was called Ὕψισται from his temple there*. Il y a des esprits opposés `? Ἅλυκος	alukos	Ἄλυκος, Ἄλυκος, ἁλυκός` (le premier avec _*(/a_ et les autres avec _*)/a_). Qui a raison ? Qui a tort ?
+
+Je reprends l'index commun aux quatre dicos que j'utilise dans Eulexis_web et je le réduis à l'alignement des LSJ et Bailly 2020. Je mets le résultats dans `data/index_LSJ_Bailly.csv`. Je le vois comme un moyen d'évaluer les richesses comparées des deux dicos. J'ai 158 643 lignes dont 30 782 vides dans la colonne du LSJ et 47 399 dans celle du Bailly. On peut donc tabler sur un recouvrement des dicos sur 80 462 mots. Deux mots qui diffèrent par leurs signes diacritiques peuvent de retrouver sur une même ligne puisque l'alignement ne tient pas compte des signes diacritiques. Cela ne devrait se produire que quand plusieurs mots ne diffèrent que par les diacritiques. Ça pourrait permettre de repérer des conflits d'accents entre les deux dicos...
+
+Il faudrait que j'essaie avec la liste des lemmes de Logeion dont la fréquence est supérieure à 5 (strictement, 19 844 et égale à 5, 1 958 suplémentaires).
+
+Clairement, il faut aussi que je traite les cas complexes.
+
 ## Vendredi 2 octobre 2020
 
 Hier soir, j'ai poussé sur GitHub mes fichiers et je me suis aperçu ce matin que les dernières modifs dans mon code me faisaient perdre les sens du premier substantif dans une série de deux. Cela ne concerne que 92 cas, mais je l'ai corrigé.
+
+Je pirate une de mes fonctions dans Eulexis pour aligner son lexique avec les fichiers que j'ai déjà créés. Pour cela, je charge les entrées de ces fichiers dans autant de multiMap que nécessaire et ensuite, pour chaque lemme du lexique d'Eulexis, je regarde les entrées qui correspondent (je les compte et les indique). En travaillant seulement avec ce que j'ai (je n'ai pas encore traité les cas complexes), j'ai 1 218 *lemmes* pour lesquels j'ai plusieurs candidats. Et 61 648 qui n'ont pas trouvé de candidat. Ça me semble trop, même sur mes 116 350 lemmes : plus de la moitié... Évidemment, ça pourra s'améliorer avec le traitement des cas complexes, mais ils ne sont que 16 740.
+
+Les lemmes ayant trouvé un et un seul candidat sont 53 683, dont 47 628 dans le fichier avec un sens. Les autres sont 5 298 renvois, 155 substantifs, 384 entrées secondaires avec un sens et 218 entrées secondaires avec renvoi. Si on regarde ça de l'autre point de vue, on arrive à la conclusion que plus d'un tiers des entrées du Bailly pour lesquelles on a un sens n'est pas utilisé dans Perseus (ou ne figure pas dans le LSJ ?).
 
 ## Mercredi 30 septembre 2020
 
