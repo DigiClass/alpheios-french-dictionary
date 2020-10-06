@@ -65,9 +65,9 @@ for my $lemma (keys %bailly) {
 }
 for my $lemma (keys %lsj) {
   if ($bailly{$lemma}) {
-    $dat{$lemma} = $bailly{$lemma};
+    $dat{$lemma} = "$bailly{$lemma}|Bailly";
   } else {
-    $dat{$lemma} = $lsj{$lemma};
+    $dat{$lemma} = "$lsj{$lemma}|LSJ";
     $nobailly{$lemma} = $lsj{$lemma};
   }
 }
