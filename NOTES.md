@@ -58,6 +58,34 @@ Il y a aussi un grand nombre de mots avec un préfixe pouvant avoir des sens dif
 
 A priori, je vais essayer de dater mes commentaires qu'il faut considérer comme des *mises à jour*, c'est à dire qu'il faudrait les lire *de bas en haut*. Je ne garantis pas que je n'ajouterai pas quelque chose dans un paragraphe déjà écrit à une date antérieure.
 
+## Mercredi 7 octobre 2020
+
+Un petit commentaire sur une des dernières phrases de Bridget : _Not many of the words from that passage were among the ones that have French definitions, but you can see how they look if you double-click on "σε"_. J'espère que plus de traductions viendront des cas complexes. On peut penser que les mots fréquents acquièrent plus souvent des sens variés et conduisent donc à des articles avec rubriques et sous-rubriques. Et on revient à ma dernière phrase du 3 octobre : traiter les cas complexes !
+
+## Mardi 6 octobre 2020 (Bridget)
+
+Here are the results of the first pass through matching the Bailly lemmas in Bailly_sens.csv and Bailly_renv.csv with the Alpheios LSJ short defs index. I was able to match 46,598 entries (some of which are duplicates for the weird Alpheios capitalization handling).  48,815 out of 93,557 entries in the Alpheios LSJ index were NOT matched.  So we're about half-way there :-)
+
+I've included the various scripts I've used as well, just to keep everything in one place -- these are not anything I would recommend anyone try to use, particularly the perl scripts :-). Possibly of interest is the XSLT for converting from unicode->betacode->unicode -- this is what we've used for years with Alpheios, including for our LSJ short defs index, so I ran the Bailly_sens.csv and Bailly_renv.csv files through them to ensure consistency.
+
+Files of interest:
+
+* **raw_data/alpheios/matched.csv**: this contains the lemmas for which I could find an exact match (or exact match excluding initial capital) in the Alpheios LSJ index
+
+* **raw_data/alpheios/nolsj.csv**: this contains the lemmas from the Bailly files that I could not match in the Alpheios LSJ index.
+
+* **raw_data/alpheios/nobailly.csv**: this contains the lemmas from the Alpheios LSJ index that I could not match in the Bailly files.
+
+* **raw_data/alpheios/morphdiff.csv**: this contains a subset of the lemmas in nolsj.csv (i.e the lemmas found in Bailly and not in the LSJ index) that morpheus parsed as a different lemma (and the corresponding LSJ short def for that lemma) (TargetWord is the lemma from Bailly, LemmaWord is the lemma from LSJ)
+
+* **raw_data/alpheios/propernouns.csv**: this contains a subset of the lemmas in nolsj.csv that morpheus parsed as a different lemma that are likely to be proper nouns. In some cases, the initial sense of the propernoun WAS found in the LSJ index but additional senses were not (if a lemma in here has sense indicators and the plain lemma without the sense isn't listed, then a single sense was matched in the LSJ index)
+
+Finally, 
+
+* **data/bailly-grc-defs.dat** contains an initial pass of the Alpheios Bailly data file, for all of the lemmas found in the Bailly files with the French definitions, and for any other lemmas from LSJ that were not found, the English definitions from LSJ.
+
+* **test/index.html**  can be used to test the defs file with Alpheios . You should see  a page with a small excerpt from Sophocles Ajax, and Alpheios embedded with a build of the code that has the Bailly+LSJ short defs file. (This should automatically be selected as the default short definition lexicon, if it's not for some reason you can select that by going to the resources tab of the Alpheios options dialog).  Not many of the words from that passage were among the ones that have French definitions, but you can see how they look if you double-click on "σε" . You can also enter any greek word in the lookup box. I threw a quick credits statement together, but this will need to be expanded upon (and typos fixed :-) ).
+
 ## Samedi 3 octobre 2020
 
 J'ai ajouté une comparaison sans diacritique et sans majuscule pour les *lemmes* non-trouvés. Ça me permets de repêcher 4 144 correspondances. Mais certaines ne sont pas convaincantes, car elles associent un mot avec majuscule à un mot sans. Toutefois, on pourrait admettre `? Ὕψιστος	uyistos	ὕψιστος`, d'autant que le LSJ dit *one of the gates of Thebes was called Ὕψισται from his temple there*. Il y a des esprits opposés `? Ἅλυκος	alukos	Ἄλυκος, Ἄλυκος, ἁλυκός` (le premier avec _*(/a_ et les autres avec _*)/a_). Qui a raison ? Qui a tort ?
