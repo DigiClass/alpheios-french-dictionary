@@ -6,6 +6,22 @@
 
 * **[test/index.html](../test/index.html)**  can be used to test the defs file with Alpheios . You should see  a page with a small excerpt from Sophocles Ajax, and Alpheios embedded with a build of the code that has the Bailly+LSJ short defs file. (This should automatically be selected as the default short definition lexicon, if it's not for some reason you can select that by going to the resources tab of the Alpheios options dialog).  Not many of the words from that passage were among the ones that have French definitions, but you can see how they look if you double-click on "σε" . You can also enter any greek word in the lookup box. I threw a quick credits statement together, but this will need to be polished and expanded upon.
 
+## Eulexis alignment data
+
+* **[data/Eulexis_Bailly_align.csv](Eulexis_Bailly_align.csv)** contient le résultat de l'alignement des *lemmes* d'Eulexis (i.e. de Diogenes) avec les divers fichiers extraits du Bailly (seulement les cas simples). Le contenu des colonnes est indiqué sur la première ligne :
+1. lemme (d'Eulexis) en unicode
+2. le même en betacode
+3. le mot s'il est trouvé dans le fichier `Bailly_sens.csv`
+4. le mot s'il est trouvé dans le fichier `Bailly_renv.csv`
+5. le mot s'il est trouvé dans le fichier `Bailly_subst.csv`
+6. le mot s'il est trouvé dans le fichier `Bailly_es_sens.csv`
+7. le mot s'il est trouvé dans le fichier `Bailly_es_renv.csv`
+8. le nombre de mots trouvés dans les fichiers
+
+Si le *lemme* n'a été trouvé dans aucun des fichiers, je fais une deuxième tentative en supprimant les signes diacritiques et l'éventuelle majuscule. Pour distinguer les lignes issues de cette deuxième tentative, je les fais commencer par un point d'interrogation et le nombre de mots trouvés est augmenté de 100.
+
+
+
 ## Raw data
 
 Data contained in `data/raw/` are intermediate data produced to import Bailly's short definitions into Eulexis and Alpheios.
@@ -16,15 +32,15 @@ Data contained in `data/raw/` are intermediate data produced to import Bailly's 
 
 Files of interest:
 
-* **raw_data/alpheios/matched.csv**: this contains the lemmas for which I could find an exact match (or exact match excluding initial capital) in the Alpheios LSJ index
+* **[raw/alpheios/matched.csv](raw/alpheios/matched.csv)**: this contains the lemmas for which I could find an exact match (or exact match excluding initial capital) in the Alpheios LSJ index
 
-* **raw_data/alpheios/nolsj.csv**: this contains the lemmas from the Bailly files that I could not match in the Alpheios LSJ index.
+* **[raw/alpheios/nolsj.csv](raw/alpheios/nolsj.csv)**: this contains the lemmas from the Bailly files that I could not match in the Alpheios LSJ index.
 
-* **raw_data/alpheios/nobailly.csv**: this contains the lemmas from the Alpheios LSJ index that I could not match in the Bailly files.
+* **[raw/alpheios/nobailly.csv](raw/alpheios/nobailly.csv)**: this contains the lemmas from the Alpheios LSJ index that I could not match in the Bailly files.
 
-* **raw_data/alpheios/morphdiff.csv**: this contains a subset of the lemmas in nolsj.csv (i.e the lemmas found in Bailly and not in the LSJ index) that morpheus parsed as a different lemma (and the corresponding LSJ short def for that lemma) (TargetWord is the lemma from Bailly, LemmaWord is the lemma from LSJ)
+* **[raw/alpheios/morphdiff.csv](raw/alpheios/morphdiff.csv)**: this contains a subset of the lemmas in nolsj.csv (i.e the lemmas found in Bailly and not in the LSJ index) that morpheus parsed as a different lemma (and the corresponding LSJ short def for that lemma) (TargetWord is the lemma from Bailly, LemmaWord is the lemma from LSJ)
 
-* **raw_data/alpheios/propernouns.csv**: this contains a subset of the lemmas in nolsj.csv that morpheus parsed as a different lemma that are likely to be proper nouns. In some cases, the initial sense of the propernoun WAS found in the LSJ index but additional senses were not (if a lemma in here has sense indicators and the plain lemma without the sense isn't listed, then a single sense was matched in the LSJ index)
+* **[raw/alpheios/propernouns.csv](raw/alpheios/propernouns.csv)**: this contains a subset of the lemmas in nolsj.csv that morpheus parsed as a different lemma that are likely to be proper nouns. In some cases, the initial sense of the propernoun WAS found in the LSJ index but additional senses were not (if a lemma in here has sense indicators and the plain lemma without the sense isn't listed, then a single sense was matched in the LSJ index)
 
 ### Eulexis (`raw/eulexis/*`)
 

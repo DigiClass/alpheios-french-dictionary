@@ -88,6 +88,18 @@ Finally,
 
 ## Samedi 3 octobre 2020
 
+Le fichier `data/Eulexis_Bailly_align.csv` contient le résultat de l'alignement des *lemmes* d'Eulexis (i.e. de Diogenes) avec les divers fichiers extraits du Bailly (seulement les cas simples). Le contenu des colonnes est indiqué sur la première ligne :
+1. lemme (d'Eulexis) en unicode
+2. le même en betacode
+3. le mot s'il est trouvé dans le fichier `Bailly_sens.csv`
+4. le mot s'il est trouvé dans le fichier `Bailly_renv.csv`
+5. le mot s'il est trouvé dans le fichier `Bailly_subst.csv`
+6. le mot s'il est trouvé dans le fichier `Bailly_es_sens.csv`
+7. le mot s'il est trouvé dans le fichier `Bailly_es_renv.csv`
+8. le nombre de mots trouvés dans les fichiers
+
+Si le *lemme* n'a été trouvé dans aucun des fichiers, je fais une deuxième tentative en supprimant les signes diacritiques et l'éventuelle majuscule. Pour distinguer les lignes issues de cette deuxième tentative, je les fais commencer par un point d'interrogation et le nombre de mots trouvés est augmenté de 100.
+
 J'ai ajouté une comparaison sans diacritique et sans majuscule pour les *lemmes* non-trouvés. Ça me permets de repêcher 4 144 correspondances. Mais certaines ne sont pas convaincantes, car elles associent un mot avec majuscule à un mot sans. Toutefois, on pourrait admettre `? Ὕψιστος	uyistos	ὕψιστος`, d'autant que le LSJ dit *one of the gates of Thebes was called Ὕψισται from his temple there*. Il y a des esprits opposés `? Ἅλυκος	alukos	Ἄλυκος, Ἄλυκος, ἁλυκός` (le premier avec _*(/a_ et les autres avec _*)/a_). Qui a raison ? Qui a tort ?
 
 Je reprends l'index commun aux quatre dicos que j'utilise dans Eulexis_web et je le réduis à l'alignement des LSJ et Bailly 2020. Je mets le résultats dans `data/index_LSJ_Bailly.csv`. Je le vois comme un moyen d'évaluer les richesses comparées des deux dicos. J'ai 158 643 lignes dont 30 782 vides dans la colonne du LSJ et 47 399 dans celle du Bailly. On peut donc tabler sur un recouvrement des dicos sur 80 462 mots. Deux mots qui diffèrent par leurs signes diacritiques peuvent de retrouver sur une même ligne puisque l'alignement ne tient pas compte des signes diacritiques. Cela ne devrait se produire que quand plusieurs mots ne diffèrent que par les diacritiques. Ça pourrait permettre de repérer des conflits d'accents entre les deux dicos...
