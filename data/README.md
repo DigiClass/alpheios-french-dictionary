@@ -9,18 +9,20 @@
 ## Eulexis alignment data
 
 * **[data/Eulexis_Bailly_align.csv](Eulexis_Bailly_align.csv)** contient le résultat de l'alignement des *lemmes* d'Eulexis (i.e. de Diogenes) avec les divers fichiers extraits du Bailly (seulement les cas simples). Le contenu des colonnes est indiqué sur la première ligne :
-1. lemme (d'Eulexis) en unicode
-2. le même en betacode
-3. le mot s'il est trouvé dans le fichier `Bailly_sens.csv`
-4. le mot s'il est trouvé dans le fichier `Bailly_renv.csv`
-5. le mot s'il est trouvé dans le fichier `Bailly_subst.csv`
-6. le mot s'il est trouvé dans le fichier `Bailly_es_sens.csv`
-7. le mot s'il est trouvé dans le fichier `Bailly_es_renv.csv`
-8. le nombre de mots trouvés dans les fichiers
+    1. lemme (d'Eulexis) en unicode
+    2. le même en betacode
+    3. le mot s'il est trouvé dans le fichier `Bailly_sens.csv`
+    4. le mot s'il est trouvé dans le fichier `Bailly_renv.csv`
+    5. le mot s'il est trouvé dans le fichier `Bailly_subst.csv`
+    6. le mot s'il est trouvé dans le fichier `Bailly_es_sens.csv`
+    7. le mot s'il est trouvé dans le fichier `Bailly_es_renv.csv`
+    8. le nombre de mots trouvés dans les fichiers
 
 Si le *lemme* n'a été trouvé dans aucun des fichiers, je fais une deuxième tentative en supprimant les signes diacritiques et l'éventuelle majuscule. Pour distinguer les lignes issues de cette deuxième tentative, je les fais commencer par un point d'interrogation et le nombre de mots trouvés est augmenté de 100.
 
+* **[data/index_LSJ_Bailly.csv](index_LSJ_Bailly.csv)** est l'index commun du LSJ (version de Chaeréphon) et du Bailly. La première colonne est la base commune : l'entrée sans diacritique, ni majuscule, ni indice d'homonymie. La deuxième colonne donne l'entrée du LSJ et la troisième l'entrée du Bailly. En cas d'entrées multiples, j'utilise autant de ligne que nécessaire.
 
+* **[data/betunicode_gr.csv](betunicode_gr.csv)** est le tableau de conversion betacode-Unicode que j'utilise dans Eulexis. Les lignes contenant un point d'exclamation "!" sont des commentaires et doivent être ignorées. Il s'agit de remplacer séquentiellement les éléments de la première colonne par ceux de la troisième, ou réciproquement. L'ordre a son importance et le β initial (si on utilise le ϐ) ou le ς final doivent être traités à part.
 
 ## Raw data
 

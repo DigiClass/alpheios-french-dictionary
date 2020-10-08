@@ -104,6 +104,14 @@ J'ai ajouté une comparaison sans diacritique et sans majuscule pour les *lemmes
 
 Je reprends l'index commun aux quatre dicos que j'utilise dans Eulexis_web et je le réduis à l'alignement des LSJ et Bailly 2020. Je mets le résultats dans `data/index_LSJ_Bailly.csv`. Je le vois comme un moyen d'évaluer les richesses comparées des deux dicos. J'ai 158 643 lignes dont 30 782 vides dans la colonne du LSJ et 47 399 dans celle du Bailly. On peut donc tabler sur un recouvrement des dicos sur 80 462 mots. Deux mots qui diffèrent par leurs signes diacritiques peuvent de retrouver sur une même ligne puisque l'alignement ne tient pas compte des signes diacritiques. Cela ne devrait se produire que quand plusieurs mots ne diffèrent que par les diacritiques. Ça pourrait permettre de repérer des conflits d'accents entre les deux dicos...
 
+La première colonne est la base commune : l'entrée sans diacritique, ni majuscule, ni indice d'homonymie. La deuxième colonne donne l'entrée du LSJ et la troisième l'entrée du Bailly. En cas d'entrées multiples, j'utilise autant de ligne que nécessaire. Le cas d'ἄατος est intéressant
+```TSV
+αατος	ἄατος	ἄατος1
+αατος	ἄατος ²	ἄατος2
+αατος		ἄατος3
+```
+En effet, `ἄατος ² = ἄατος3` et `ἄατος ≈ ἄατος1` sauf que `ἄατος2`, qui donne un sens assez différent de `ἄατος1`, renvoie à la même citation que le LSJ dans `ἄατος` (A. Rh. 1, 459).
+
 Il faudrait que j'essaie avec la liste des lemmes de Logeion dont la fréquence est supérieure à 5 (strictement, 19 844 et égale à 5, 1 958 suplémentaires).
 
 Clairement, il faut aussi que je traite les cas complexes.
