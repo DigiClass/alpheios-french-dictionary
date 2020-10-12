@@ -1,4 +1,4 @@
 .DS_Store
 data/.*
-raw_data/.*
+data/raw/eulexis/.*
 

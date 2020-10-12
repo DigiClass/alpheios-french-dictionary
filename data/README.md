@@ -17,7 +17,6 @@
     6. le mot s'il est trouvé dans le fichier `Bailly_es_sens.csv`
     7. le mot s'il est trouvé dans le fichier `Bailly_es_renv.csv`
     8. le nombre de mots trouvés dans les fichiers
-
 Si le *lemme* n'a été trouvé dans aucun des fichiers, je fais une deuxième tentative en supprimant les signes diacritiques et l'éventuelle majuscule. Pour distinguer les lignes issues de cette deuxième tentative, je les fais commencer par un point d'interrogation et le nombre de mots trouvés est augmenté de 100.
 
 * **[data/index_LSJ_Bailly.csv](index_LSJ_Bailly.csv)** est l'index commun du LSJ (version de Chaeréphon) et du Bailly. La première colonne est la base commune : l'entrée sans diacritique, ni majuscule, ni indice d'homonymie. La deuxième colonne donne l'entrée du LSJ et la troisième l'entrée du Bailly. En cas d'entrées multiples, j'utilise autant de ligne que nécessaire.

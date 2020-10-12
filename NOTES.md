@@ -55,8 +55,65 @@ Il y a aussi un grand nombre de mots avec un préfixe pouvant avoir des sens dif
 
 # Notes sur les fichiers que je mets dans le dossier "raw_data".
 
-
 A priori, je vais essayer de dater mes commentaires qu'il faut considérer comme des *mises à jour*, c'est à dire qu'il faudrait les lire *de bas en haut*. Je ne garantis pas que je n'ajouterai pas quelque chose dans un paragraphe déjà écrit à une date antérieure.
+
+## Lundi 12 octobre 2020
+
+J'ai fait mon programme d'extraction des cas complexes. Il commence par prélever tous les substantifs et adverbes qui sont entre accolades. Parmi les lignes qui restent, il cherche la plus courte (en nombre de tab.) qui contient des informations pertinentes (qui ne se termine pas par une tabulation), puis collecte toutes les infos qu'il trouve sur les lignes de même longueur. J'ai en cela abaissé mes objectifs, puisque si une ligne de la bonne longueur est vide, je ne vais pas chercher les sens donnés dans les sous-rubriques. Une entrée qui ne donne que des substantifs sera considérée comme vide (dans le fichier `Bailly_vide_c.txt`).
+```TSV
+Βουκολίων,	160239	
+	160240	@		1	{ὁ Βουκολίων} Boukoliôn (h.)
+	160244	@		2	{ἡ Βουκολίων} Boukoliôn, (v.)
+gens : ωνος	
+OK
+<<	160240	@		1	
+<<	160244	@		2	
+```
+Les lignes précédées de "<<" sont ce qui me reste quand j'ai extrait les substantifs. Ici, la même forme aux deux genres (masculin et féminin) correspond à deux objets différents : je pense qu'il faut les considérer comme deux lemmes différents.
+
+Le fichier `Bailly_complex.txt` ayant perdu de son intérêt, puisque je l'ai traité, a été zippé. J'ai créé des fichiers intermédiaires `Bailly_sens_c.txt` et `Bailly_subst_c.txt` dont j'ai recollé le contenu à la fin des fichier `Bailly_sens.csv` et `Bailly_subst.csv`. Je n'ai pas rétabli l'ordre alphabétique, donc ce qui est issu des cas complexes peut se retrouver (il est après la fin des premiers oméga). Je n'ai pas considéré les renvois qui apparaissent dans les cas complexes. On aura par exemple :
+```TSV
+ἀγεληΐς	> ἀγελαῖος ; > ἀγελείη	22	gens : ΐδος (ἡ) 
+ἄγκυρα	ancre ; croc de laboureur ; > αἰδοῖον	37	gens : ας (ἡ) 
+```
+Il y a plus de 300 tels renvois. Il n'est probablement pas urgent de se demander quoi en faire, puisqu'il y a de fortes chances pour que ces entrées ne servent pas.
+
+Pour les nombres, je suis maintenant à 89 374 entrées avec une (ou des) traduction(s) dans `Bailly_sens.csv` et 5 243 dérivés dans `Bailly_subst.csv` (dans ce dernier, un même mot peut apparaître plusieurs fois ; je n'ai pas encore fait de tri -s'il faut en faire un).
+
+## Dimanche 11 octobre 2020
+
+J'ai fait quelques modifs dans mon fichier d'origine et dans mon programme d'extraction. En particulier, j'ai supprimé les tabulations dans les indications morphologiques, si bien que le nombre de colonnes dans les fichiers est constant. J'ai aussi supprimé les virgules, points-virgules et deux-points à la fin des traductions. Il reste des points en fin de traduction, il y en a qui sont nécessaires (dans "ch." ou "J.C.", par exemple). Les modifs faites dans le fichier d'origine a permis d'ajouter 36 lignes à mon fichier `Bailly_sens.csv` (72 688).
+
+## Samedi 10 octobre 2020
+
+Au hasard de mes explorations, j'ai constaté deux choses assez intéressantes :
+1. Les accents et les esprits ne sont pas toujours les mêmes dans le LSJ et dans le Bailly.
+2. Un certain nombre de traductions restées blanches dans Eulexis correspondent à des entrées du LSJ qui se résument à un renvoi. Par exemple, `ἅρπασις εως, ἡ, = ἁρπαγμός, Phryn. PS p. 65B.` ou `ἄρομα ατος, τό, f.l. for ἄρωμα, Luc. Lex. 2, Ael. NA 7.8, cf. AB 450.`. Il serait peut-être astucieux (et pas trop coûteux) d'organiser une chasse pour retrouver ces renvois et insérer la traduction correspondante. Je pourrais faire ça en modifiant ma fonction spéciale `void Lemmat::repairTransl(QString nom)` appelée provisoirement par `void MainWindow::majT()` dans Eulexis.
+
+Les exemples pour les différents esprits ne manquent pas : `ἁμός2 (LSJ) = ἀμός (Bailly)` ou `ἄρμα2 (LSJ) = 2 ἅρμα (Bailly)`. Ce dernier ne figure pas dans les lemmes que j'ai dans Eulexis. Mais c'est évidemment faux car sous le lemme ** ἄρμα** sont rangées des formes neutres `ἄρμα ¹ ατος, τό, (< αἴρω) that which one takes ; food` et des formes féminines `ἄρμα ² ἡ, (< ἀραρίσκω) union, love`. C'est étrange, je ne retrouve pas ce lemme dans la liste de Logeion des lemmes les plus fréquents (nb d'occ. ≥ 5), pourtant mon tableau de flexion me donne au moins 30 formes différentes (et plus de 5 pour chacun des genres).
+
+## Vendredi 9 octobre 2020
+
+Pour que mes fichiers csv soient plus normalisés, j'ai décidé de grouper toutes les indications collectées dans un seule colonne. Mais du coup, tous les fichiers vont changer. J'ai découvert qu'il était imprudent de faire certaines modifs. Par exemple, j'ai relevé :
+```TSV
+κλισιάς,	463844	{αἱ κλισιάδες} grande porte :
+```
+que j'avais envie de transformer en :
+```TSV
+κλισιάς,	463844	(d'ord. au plur. αἱ κλισιάδες) grande porte :
+```
+Toutefois, ce serait une erreur car parmi mes *lemmes* j'ai **κλισιάδες**, mais pas **κλισιάς**. Je décide donc de repasser ces cas modifiés en cas complexes que je vais traiter en trichant : la même traduction sera donnée au singulier κλισιάς (dans Bailly_sens) et au pluriel αἱ κλισιάδες (dans Bailly_subst). C'est d'autant plus intéressant que ça va donner une traduction à un mot qui n'en avait pas, car dans le LSJ κλισιάδες se résume à un renvoi vers κλεισιάδες.
+
+Plutôt que de chercher directement des traductions comme l'a fait Bridget, j'ai préféré aligner les fichiers au préalable. L'idée est que ça me permettra de choisir les candidats quand il y en a plus d'un (ou quand il n'y en a pas d'exact).
+
+## Jeudi 8 octobre 2020
+
+Je commence à réfléchir à l'étape *d'après*, à savoir la vérification des traductions. En réalité, pour les traductions françaises, il y aura un choix à faire en même temps que la correction. En effet, j'ai traduit en français les traductions anglaises et les traductions obtenues sont parfois meilleures que celles que je tire du Bailly. Par exemple, pour **ὁράω**, mon algo pour les cas complexes va donner simplement **voir** (il y a un "A intr. voir" et un "B tr. voir"), alors qu'actuellement j'ai dans mon fichier de traductions **voir, regarder, pouvoir voir**. Sans rien savoir du grec, j'ai l'impression que cette dernière est plus intéressante. Évidemment, il y en a aussi des complètement foireuses.
+
+Je vais bien sûr m'appuyer sur ce que j'ai déjà fait pour les traductions anglaises d'Eulexis. Mais plusieurs questions se posent :
+- Ajouter un bouton (4 au lieu de 3) pour choisir la traduction déjà existante ou celle du Bailly ?
+- Donner la traduction anglaise seulement comme guide ou donner la possibilité de l'éditer ?
+- En profiter pour revoir les traductions en allemand ? Ou réserver ça pour une autre entreprise d'envergure ? Le problème majeur étant que tous les hellénistes ne sont pas germanophones. Si on met la traduction en allemand éditable, comment saura-t-on après coup si la traduction a été jugée acceptable ou si elle n'a pas été évaluée ? Inversement, relira-t-on jamais les traductions, si ce n'est pas maintenant.
 
 ## Mercredi 7 octobre 2020
 
