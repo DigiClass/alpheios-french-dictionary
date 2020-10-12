@@ -78,7 +78,13 @@ Le fichier `Bailly_complex.txt` ayant perdu de son intérêt, puisque je l'ai tr
 ```
 Il y a plus de 300 tels renvois. Il n'est probablement pas urgent de se demander quoi en faire, puisqu'il y a de fortes chances pour que ces entrées ne servent pas.
 
-Pour les nombres, je suis maintenant à 89 374 entrées avec une (ou des) traduction(s) dans `Bailly_sens.csv` et 5 243 dérivés dans `Bailly_subst.csv` (dans ce dernier, un même mot peut apparaître plusieurs fois ; je n'ai pas encore fait de tri -s'il faut en faire un).
+Pour les nombres, je suis maintenant à 89 374 entrées avec une (ou des) traduction(s) dans `Bailly_sens.csv` et 5 243 dérivés dans `Bailly_subst.csv` (dans ce dernier, un même mot peut apparaître plusieurs fois ; je n'ai pas encore fait de tri -s'il faut en faire un). Les renvois sont 15 436 (deux de plus !). Ces trois fichiers ont maintenant un nombre de colonnes fixes, puisque j'ai groupé toutes les informations recueillies dans un seul champ. Les renvois ont 3 champs, les sens, 4 et les dérivés, 5.
+
+J'ai aligné à nouveau les lemmes d'Eulexis avec les mots extraits du Bailly. J'ai encore 46 679 orphelins, mais la majorité des lemmes a maintenant un candidat unique (67 505). 2 165 lemmes ont deux prétendants ou plus. Parmi les orphelins, une recherche sans diacritique, ni majuscule permet de repêcher 3 500 candidats uniques et 513 lemmes avec deux prétendants ou plus. Parmi les lemmes avec un candidat unique, le détail est assez similaire à celui observé précédemment : la grande majorité (61 694) viennent du fichier `Bailly_sens`. Les renvois sont 5 188, les dérivés 138, les entrées secondaires 345 et 40. Ces nombres sont en léger recul par rapport à la précédente évaluation, ce qui peut se comprendre : le traitement des cas complexes a apporté beaucoup de nouveau mots avec traduction et certains lemmes qui avaient trouvé un candidat dans les catégories secondaires peuvent avoir maintenant deux prétendants possibles. L'analyse des lemmes avec deux prétendants est plus compliquée. 645 lemmes ont leurs deux prétendants dans `Bailly_sens`. Ce qui peut poser un problème quand le lexique d'Eulexis ne connaît qu'un seul lemme alors que les dicos en donnent deux. Par exemple, 
+```TSV
+ἡλίασις	h(li/asis	2 ἡλίασις, 1 ἡλίασις
+```
+Tous les dicos s'accordent pour dire qu'il y a **deux ἡλίασις**.
 
 ## Dimanche 11 octobre 2020
 
