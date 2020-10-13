@@ -57,6 +57,12 @@ Il y a aussi un grand nombre de mots avec un préfixe pouvant avoir des sens dif
 
 A priori, je vais essayer de dater mes commentaires qu'il faut considérer comme des *mises à jour*, c'est à dire qu'il faudrait les lire *de bas en haut*. Je ne garantis pas que je n'ajouterai pas quelque chose dans un paragraphe déjà écrit à une date antérieure.
 
+## Mardi 13 octobre 2020
+
+I've rerun the alpheios scripts, this time including the data in the Bailly_subst.csv file. For the moment, I've appended the additional senses to the main lemma entry in the format [ substantive (without article): definition ].  I'm sure this isn't exactly what we would want to do with them, but I thought it might be helpful to see them in the Alpheios results. A new file data/raw/alpheios/subst_errors.csv contains entries from the Bailly_subst.csv file which I couldn't match with lemmas in Bailly_sens.csv (I think there were mainly to do data formatting issues, there are only a handful of them).
+
+We now have 60,572 matched and 35,001 unmatched from the Alpheios LSJ index. 
+
 ## Lundi 12 octobre 2020
 
 J'ai fait mon programme d'extraction des cas complexes. Il commence par prélever tous les substantifs et adverbes qui sont entre accolades. Parmi les lignes qui restent, il cherche la plus courte (en nombre de tab.) qui contient des informations pertinentes (qui ne se termine pas par une tabulation), puis collecte toutes les infos qu'il trouve sur les lignes de même longueur. J'ai en cela abaissé mes objectifs, puisque si une ligne de la bonne longueur est vide, je ne vais pas chercher les sens donnés dans les sous-rubriques. Une entrée qui ne donne que des substantifs sera considérée comme vide (dans le fichier `Bailly_vide_c.txt`).
