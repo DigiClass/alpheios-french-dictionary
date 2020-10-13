@@ -17,7 +17,7 @@
     6. le mot s'il est trouvé dans le fichier `Bailly_es_sens.csv`
     7. le mot s'il est trouvé dans le fichier `Bailly_es_renv.csv`
     8. le nombre de mots trouvés dans les fichiers
-Si le *lemme* n'a été trouvé dans aucun des fichiers, je fais une deuxième tentative en supprimant les signes diacritiques et l'éventuelle majuscule. Pour distinguer les lignes issues de cette deuxième tentative, je les fais commencer par un point d'interrogation et le nombre de mots trouvés est augmenté de 100.
+Si le *lemme* n'a été trouvé dans aucun des fichiers, je fais une deuxième tentative en supprimant les signes diacritiques et l'éventuelle majuscule. Pour distinguer les lignes issues de cette deuxième tentative, je les fais commencer par un point d'interrogation et le nombre de mots trouvés est augmenté de 100. Une majorité des *lemmes* a maintenant un candidat unique : **67 505 = 58%** (voir les détails en date du 12 octobre dans [NOTES.md](../NOTES.md)).
 
 * **[data/index_LSJ_Bailly.csv](index_LSJ_Bailly.csv)** est l'index commun du LSJ (version de Chaeréphon) et du Bailly. La première colonne est la base commune : l'entrée sans diacritique, ni majuscule, ni indice d'homonymie. La deuxième colonne donne l'entrée du LSJ et la troisième l'entrée du Bailly. En cas d'entrées multiples, j'utilise autant de ligne que nécessaire.
 
@@ -47,47 +47,86 @@ Files of interest:
 
 (data produced by @PhVerkerk)
 
-@PhVerkerk a déposé une série de fichiers qui correspondent au traitement des cas simples (définis plus bas). Les fichiers **txt** contiennent des données brutes, alors que les **csv** sont le résultat d'un traitement (en réalité, les fichiers txt sont aussi issus du traitement de mon fichier intermédiaire). Le fichier zippé, [`Bailly_tout.txt.zip`](raw/eulexis/Bailly_tout.txt.zip) (qui était un peu trop gros et assez inutile), correspond à mon fichier intermédiaire, dans lequel il a explicité les substantifs abrégés (sous la forme *{ὁ ἀγ.}*) et remplacé les renvois au mot suivant ou précédent par ledit mot. Le fichier [`Bailly_vide.txt`](raw/eulexis/Bailly_vide.txt) contient les entrées pour lesquelles je n'ai pas su isoler de sens (il y en a 2 975). Elles semblent correspondre à des formes verbales qui se contentent de renvoyer au verbe (en précisant les temps et mode). Le troisième fichier, [`Bailly_complex.txt`](raw/eulexis/Bailly_complex.txt), contient les entrées que @PhVerkerk a considérées comme complexes et que doivent encore être traitées. Il y en a 16 740...
+@PhVerkerk a déposé une série de fichiers qui correspondent au traitement des informations extraites du Bailly (Nouvelle édition revue et corrigée, dite
+BAILLY 2020
+Version Hugo Chávez, établie sous la direction de
+GÉRARD GRÉCO
+ingénieur,
+avec le concours spécial de
+André CHARBONNET (Chaeréphon), Mark DE WILDE
+et
+Bernard MARÉCHAL, aimablement fournie à @PhVerkerk au format TeX par Gérard Gréco). 
+Les fichiers **txt** contiennent des données brutes, alors que les **csv** sont le résultat d'un traitement (en réalité, les fichiers txt sont aussi issus du traitement de mon fichier intermédiaire). Les fichiers zippés, [`Bailly_tout.txt.zip`](raw/eulexis/Bailly_tout.txt.zip) et [`Bailly_complex.txt.zip`](raw/eulexis/Bailly_complex.txt.zip) (qui étaient un peu trop gros et assez inutiles), correspondent respectivement à mon fichier intermédiaire, dans lequel j'ai explicité les substantifs abrégés (sous la forme *{ὁ ἀγ.}*) et remplacé les renvois au mot suivant ou précédent par ledit mot et aux cas complexes que j'ai traités dans un second temps. Le fichier [`Bailly_vide.txt`](raw/eulexis/Bailly_vide.txt) contient les entrées simples pour lesquelles je n'ai pas su isoler de sens (il y en a 2 975). Elles semblent correspondre à des formes verbales qui se contentent de renvoyer au verbe (en précisant les temps et mode). Le fichier [`Bailly_vide_c.txt`](raw/eulexis/Bailly_vide_c.txt) contient les entrées complexes pour lesquelles je n'ai pas su isoler de sens (il y en a 18). Il s'agit exclusivement d'entrées du Bailly qui contiennent la même forme à deux genres différents, que j'ai dû considérer comme deux mots distincts.
+```TSV
+Βουκολίων,	160239	
+	160240	@		1	{ὁ Βουκολίων} Boukoliôn (h.)
+	160244	@		2	{ἡ Βουκολίων} Boukoliôn, (v.)
+gens : ωνος	
+OK
+<<	160240	@		1	
+<<	160244	@		2	
+```
+Les dernières lignes (qui commencent par "<<") sont issues de mon traitement (voir le fichier [NOTES.md](../NOTES.md)).
 
-Le format de donnés CSV est composé de 5 champs :
+#### Anciens fichiers avec les entrées secondaires :
+
+Le format des données CSV (Tab comme séparateur) est composé de 5 champs :
 1. Le lemme
 2. L'entrée secondaire (éventuellement plusieurs variantes)
 3. Le sens trouvé (éventuellement vide)
 4. Le renvoi (éventuellement vide)
 5. La longueur du sens trouvé (nombre de caractères)
 
-Fichiers:
-
 - [`Bailly_es_sens.csv`](raw/eulexis/Bailly_es_sens.csv) : le sens est non-vide et le renvoi est vide
 - [`Bailly_es_renv.csv`](raw/eulexis/Bailly_es_renv.csv) : le sens est vide et le renvoi est non-vide
-- [`Bailly_es_probl.csv`](raw/eulexis/Bailly_es_probl.csv) : le sens est non-vide et le renvoi est non-vide
-- Le fichier [`Bailly_renv.csv`](raw/eulexis/Bailly_renv.csv) contient les entrées identifiées comme des renvois (il y en a 15 434). Les lignes contiennent deux champs principaux : l'entrée et le renvoi. Viennent ensuite les indications trouvées : désinences (*des*), génitif (*gens*) et article (entre parenthèses), éventuellement aussi quelques mots clefs. Elles sont aussi, en général, séparées par des tabulations, mais je pourrais modifier mon code pour que tout ce qui relève des *indications* soit dans un seul champ. Il faut noter que je n'ai pas vérifié si le renvoi existe, comme entrée ou sous-entrée. Mais il n'est pas nécessaire de vérifier que tous les renvois mènent quelque part, puisqu'on n'est pas sûr que tous les renvois soient utiles. Quand on fera la recherche d'un lemme (du **lexique**) et qu'on trouvera un renvoi ne menant nulle part, il sera temps de s'en occuper...
+- [`Bailly_es_probl.csv`](raw/eulexis/Bailly_es_probl.csv) : le sens est non-vide et le renvoi est non-vide (ce sont quelques cas qui posent problème puisqu'en principe sens et renvois sont exclusifs)
+
+#### Fichiers extraits du Bailly :
+
+- Le fichier [`Bailly_renv.csv`](raw/eulexis/Bailly_renv.csv) contient les entrées identifiées comme des renvois (il y en a 15 436 -il n'a quasiment pas changé car les renvois des cas complexes sont restés dans les sens puisque, la plupart du temps, ce n'est qu'une acception parmi d'autres qui donne un renvoi). Les lignes contiennent trois champs : l'entrée, le renvoi et les indications trouvées. Ces dernières sont : désinences (*des*), génitif (*gens*) et article (entre parenthèses), éventuellement aussi quelques mots clefs. Elles sont maintenant groupées dans un seul champ (éventuellement vide). Il faut noter que je n'ai pas vérifié si le renvoi existe, comme entrée ou sous-entrée. Mais il n'est pas nécessaire de vérifier que tous les renvois mènent quelque part, puisqu'on n'est pas sûr que tous les renvois soient utiles. Quand on fera la recherche d'un lemme (du **lexique**) et qu'on trouvera un renvoi ne menant nulle part, il sera temps de s'en occuper...
 ```TSV
-ἀϐουλί	> ἀϐουλήτως	adv.
-ἁϐροσύνη	> ἁϐρότης	gens : ης	(ἡ)
-ἁϐροχαίτης	> ἁϐροκόμης	gens : ου,	adj. m.
-Ἀϐυδηνοκόμης	> Ἀϐυδοκόμης
+ἀϐόατος	> ἀϐόητος	
+ἀϐόηθος	> ἀϐοήθητος	des : ος, ον, 
+ἀϐουλί	> ἀϐουλήτως	adv. 
+ἁϐροσύνη	> ἁϐρότης	gens : ης (ἡ) 
+ἁϐροχαίτης	> ἁϐροκόμης	gens : ου, adj. m. 
+Ἀϐυδηνοκόμης	> Ἀϐυδοκόμης	
 ```
-- Le fichier [`Bailly_sens.csv`](raw/eulexis/Bailly_sens.csv) est le fichier principal. Comme son nom l'indique, il contient les entrées pour lesquelles je pense avoir réussi à isoler un sens (il y en a 72 652). Il contient les entrées (première colonne), le sens trouvé (2e colonne), le nombre de caractères que compte le sens (3e colonne, uniquement pour repérer facilement les sens qui sont trop longs et qui mériteraient d'être abrégés). Viennent ensuite les indications relevées (en nombre variable, comme dans le cas des renvois). On pourra donc avoir des lignes avec trois champs peuplés (typiquement pour un verbe), quatre (souvent pour les adjectifs, avec seulement un *des*), cinq (généralement les noms, avec un *gens* et un article pour donner le genre) et, plus rarement, six (un adjectif avec un *des*, un *gens* et un ou plusieurs mots-clefs, parce qu'il a donné un adverbe ou un substantif).
+- Le fichier [`Bailly_sens.csv`](raw/eulexis/Bailly_sens.csv) est le fichier principal. Comme son nom l'indique, il contient les entrées pour lesquelles je pense avoir réussi à isoler un sens (il y en a 89 374). Il contient les entrées (première colonne), le sens trouvé (2e colonne), le nombre de caractères que compte le sens (3e colonne, uniquement pour repérer facilement les sens qui sont trop longs et qui mériteraient d'être abrégés). Viennent ensuite les indications relevées (4e colonne).
 ```TSV
-ἀασμός	exhalaison, souffle,	20	gens : οῦ	(ὁ)
-1 ἄατος	insatiable de,	14	des : ος, ον
-2 ἄατος	pernicieux, funeste,	20	des : ος, ον
-2 ἀάω	rassasier,	10
-ἀϐαθής	sans profondeur,	16	des : ής, ές
-Ἄϐαι	Abes, (v.)	10	gens : ῶν	(αἱ)
+ἀασμός	exhalaison, souffle	19	gens : οῦ (ὁ) 
+1 ἄατος	insatiable de	13	des : ος, ον 
+2 ἄατος	pernicieux, funeste	19	des : ος, ον 
+2 ἀάω	rassasier	9	
+ἀϐαθής	sans profondeur	15	des : ής, ές 
+...
+ᾠώδης	qui ressemble à un œuf, ovale, ovoïde	37	des : ης, ες, 
+ἀάατος	inviolable ; invincible ; très pénible	38	des : ος, ον 
+1 ἀάω	troubler l'esprit, frapper de vertige ou de folie, avoir l'esprit égaré ; frapper d'une calamité, causer un malheur ; troubler l'esprit, égarer, tromper ; commettre une faute par aveuglement d'esprit	199	tr. intr. 
 ```
-- Le fichier [`Bailly_subst.csv`](raw/eulexis/Bailly_subst.csv) contient les substantifs et les adverbes qui sont perdus dans d'autres articles (souvent des adjectifs, parfois des verbes). Comme je n'ai traité que les cas simples, il n'y a que 2 454 lignes. Les lignes sont une fois de plus de longueur variable. Elles donnent :
+Les sens tirés des cas complexes ont été ajoutés à la fin du fichier obtenu avec les cas simples. Dans l'exemple ci-dessus, on voit à la fin deux mots qui devraient s'intercaler parmi ceux du début. On voit aussi que **1 ἀάω** est formé du groupement des divers sens (séparés par un ";") et qu'il est devenu trop long.
+- Le fichier [`Bailly_subst.csv`](raw/eulexis/Bailly_subst.csv) contient les substantifs et les adverbes qui sont perdus dans d'autres articles (souvent des adjectifs, parfois des verbes). Il y a 5 243 lignes (un même mot peut apparaître plusieurs fois ; je n'ai pas encore fait de tri -s'il faut en faire un). Elles donnent :
     1. l'article (pour les substantifs) ou le mot-clef *adv.* (pour les adverbes)
     2. la forme (comme elle était parfois abrégée, je l'ai reconstituée à la main, en espérant ne pas avoir écrit trop d'horreurs -je n'ai aucune connaissance en Grec)
     3. le sens
     4. le lemme (l'entrée du Bailly) où j'ai trouvé ce mot
     5. les indications relatives à l'entrée du dico et **pas** au mot trouvé
 ```TSV
-ἡ	ἐπίτομος	 chemin le plus court ou direct	ἐπίτομος	des : ος, ον,
-ὁ	ἐπιτυχών	 le premier venu	ἐπιτυγχάνω
-τὰ	ἐπιτετευγμένα	 les succès	ἐπιτυγχάνω
-τὸ	ἐπίχαρι	 le charme, la grâce	ἐπίχαρις	des : ις, ι,	gens : ιτος
+οἱ	ἐπίλεκτοι	soldats d'élite	ἐπίλεκτος	des : ος, ον, 
+τὰ	ἐπίλυτρα	la rançon	ἐπίλυτρος	des : ος, ον, 
+ἡ	ἐπιμελητική	l'art de prendre soin de, diligence, vigilance	ἐπιμελητικός	des : ή, όν, 
+adv.	ἐπίμεστα	en surabondance	ἐπίμεστος	des : ος, ον, adv. 
+τὸ	ἐπιμόριον	nombre contenant un entier plus une fraction avec 1 pour numérateur	ἐπιμόριος	des : ος, ον, 
+adv.	ἐπίμοχθον	laborieusement	ἐπίμοχθος	des : ος, ον adv. 
+ὁ	ἐπίνικος	chant de victoire	ἐπίνικος	des : ος, ον 
+...
+τὸ	ἐπίκωπον	navire muni de rames	ἐπίκωπος	des : ος, ον 
+τὸ	ἐπιμελές	soin ou sollicitude pour	ἐπιμελής	des : ής, ές 
+τὰ	ἐπιμήνια	sacrifices mensuels ; provisions ou dépenses mensuelles ; menstrues	ἐπιμήνιος	des : ος, ον subst. adj. 
+...
+τὰ	ἐπιφερόμενα	les offrandes qu'on dépose sur un autel ou sur une tombe en l'honneur d'un mort	ἐπιφέρω	tr. intr. 
+τὰ	ἐπιφερόμενα	les événements futurs, l'avenir	ἐπιφέρω	tr. intr. 
 ```
+Ici aussi, les mots dérivés issus des cas complexes viennent en deuxième partie. Je donne aussi un exemple où le même mot apparaît avec deux sens différents *τὰ ἐπιφερόμενα*.
 
 Ce dernier fichier [`Bailly_subst.csv`](raw/eulexis/Bailly_subst.csv) est probablement le plus *discutable*. D'une part, il contient peut-être des horreurs dues à mon ignorance de Grec. D'autre part, il pose une question plus fondamentale de savoir quand un adjectif substantivé devient un lemme à part entière. Y a-t-il un critère objectif pour trancher la question ? On peut souvent estimer qu'il y a un substantif sous-entendu (pour donner le genre) et que l'adjectif reste un qualificatif de ce nom inexistant (pas sûr que ça aide beaucoup un étudiant débutant).
