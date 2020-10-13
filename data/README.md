@@ -8,7 +8,7 @@
 
 ## Eulexis alignment data
 
-* **[data/Eulexis_Bailly_align.csv](Eulexis_Bailly_align.csv)** contient le résultat de l'alignement des *lemmes* d'Eulexis (i.e. de Diogenes) avec les divers fichiers extraits du Bailly (seulement les cas simples). Le contenu des colonnes est indiqué sur la première ligne :
+* **[data/Eulexis_Bailly_align.csv](Eulexis_Bailly_align.csv)** contient le résultat de l'alignement des *lemmes* d'Eulexis (i.e. de Diogenes) avec les divers fichiers extraits du Bailly. Le contenu des colonnes est indiqué sur la première ligne :
     1. lemme (d'Eulexis) en unicode
     2. le même en betacode
     3. le mot s'il est trouvé dans le fichier `Bailly_sens.csv`
@@ -17,7 +17,8 @@
     6. le mot s'il est trouvé dans le fichier `Bailly_es_sens.csv`
     7. le mot s'il est trouvé dans le fichier `Bailly_es_renv.csv`
     8. le nombre de mots trouvés dans les fichiers
-Si le *lemme* n'a été trouvé dans aucun des fichiers, je fais une deuxième tentative en supprimant les signes diacritiques et l'éventuelle majuscule. Pour distinguer les lignes issues de cette deuxième tentative, je les fais commencer par un point d'interrogation et le nombre de mots trouvés est augmenté de 100. Une majorité des *lemmes* a maintenant un candidat unique : **67 505 = 58%** (voir les détails en date du 12 octobre dans [NOTES.md](../NOTES.md)).
+Si le *lemme* n'a été trouvé dans aucun des fichiers, je fais une deuxième tentative en supprimant les signes diacritiques et l'éventuelle majuscule. Pour distinguer les lignes issues de cette deuxième tentative, je les fais commencer par un point d'interrogation et le nombre de mots trouvés est augmenté de 100. 
+Une majorité des *lemmes* a maintenant un candidat unique : **67 505 = 58%** (voir les détails en date du 12 octobre dans [NOTES.md](../NOTES.md)).
 
 * **[data/index_LSJ_Bailly.csv](index_LSJ_Bailly.csv)** est l'index commun du LSJ (version de Chaeréphon) et du Bailly. La première colonne est la base commune : l'entrée sans diacritique, ni majuscule, ni indice d'homonymie. La deuxième colonne donne l'entrée du LSJ et la troisième l'entrée du Bailly. En cas d'entrées multiples, j'utilise autant de ligne que nécessaire.
 
@@ -83,7 +84,7 @@ Le format des données CSV (Tab comme séparateur) est composé de 5 champs :
 
 #### Fichiers extraits du Bailly :
 
-- Le fichier [`Bailly_renv.csv`](raw/eulexis/Bailly_renv.csv) contient les entrées identifiées comme des renvois (il y en a 15 436 -il n'a quasiment pas changé car les renvois des cas complexes sont restés dans les sens puisque, la plupart du temps, ce n'est qu'une acception parmi d'autres qui donne un renvoi). Les lignes contiennent trois champs : l'entrée, le renvoi et les indications trouvées. Ces dernières sont : désinences (*des*), génitif (*gens*) et article (entre parenthèses), éventuellement aussi quelques mots clefs. Elles sont maintenant groupées dans un seul champ (éventuellement vide). Il faut noter que je n'ai pas vérifié si le renvoi existe, comme entrée ou sous-entrée. Mais il n'est pas nécessaire de vérifier que tous les renvois mènent quelque part, puisqu'on n'est pas sûr que tous les renvois soient utiles. Quand on fera la recherche d'un lemme (du **lexique**) et qu'on trouvera un renvoi ne menant nulle part, il sera temps de s'en occuper...
+- Le fichier [`Bailly_renv.csv`](raw/eulexis/Bailly_renv.csv) contient les entrées identifiées comme des renvois (il y en a 15 436 -il n'a quasiment pas changé car les renvois des cas complexes sont restés dans les sens puisque, la plupart du temps, ce n'est qu'une acception parmi d'autres qui donne un renvoi). Les lignes contiennent trois champs : l'entrée, le renvoi et les indications trouvées. Ces dernières sont : désinences (*des*), génitif (*gens*) et article (entre parenthèses), éventuellement aussi quelques mots clefs. Elles sont maintenant groupées dans un seul champ (éventuellement vide). Il faut noter que je n'ai pas vérifié si le renvoi existe, comme entrée ou sous-entrée. Mais il n'est pas nécessaire de vérifier que tous les renvois mènent quelque part, puisqu'on n'est pas sûr que tous les renvois soient utiles (une première estimation dit qu'environ un tiers des renvois sera utile). Quand on fera la recherche d'un lemme (du **lexique**) et qu'on trouvera un renvoi ne menant nulle part, il sera temps de s'en occuper...
 ```TSV
 ἀϐόατος	> ἀϐόητος	
 ἀϐόηθος	> ἀϐοήθητος	des : ος, ον, 
@@ -104,7 +105,7 @@ Le format des données CSV (Tab comme séparateur) est composé de 5 champs :
 ἀάατος	inviolable ; invincible ; très pénible	38	des : ος, ον 
 1 ἀάω	troubler l'esprit, frapper de vertige ou de folie, avoir l'esprit égaré ; frapper d'une calamité, causer un malheur ; troubler l'esprit, égarer, tromper ; commettre une faute par aveuglement d'esprit	199	tr. intr. 
 ```
-Les sens tirés des cas complexes ont été ajoutés à la fin du fichier obtenu avec les cas simples. Dans l'exemple ci-dessus, on voit à la fin deux mots qui devraient s'intercaler parmi ceux du début. On voit aussi que **1 ἀάω** est formé du groupement des divers sens (séparés par un ";") et qu'il est devenu trop long.
+    Les sens tirés des cas complexes ont été ajoutés à la fin du fichier obtenu avec les cas simples. Dans l'exemple ci-dessus, on voit à la fin deux mots qui devraient s'intercaler parmi ceux du début. On voit aussi que **1 ἀάω** est formé du groupement des divers sens (séparés par un ";") et qu'il est devenu trop long.
 - Le fichier [`Bailly_subst.csv`](raw/eulexis/Bailly_subst.csv) contient les substantifs et les adverbes qui sont perdus dans d'autres articles (souvent des adjectifs, parfois des verbes). Il y a 5 243 lignes (un même mot peut apparaître plusieurs fois ; je n'ai pas encore fait de tri -s'il faut en faire un). Elles donnent :
     1. l'article (pour les substantifs) ou le mot-clef *adv.* (pour les adverbes)
     2. la forme (comme elle était parfois abrégée, je l'ai reconstituée à la main, en espérant ne pas avoir écrit trop d'horreurs -je n'ai aucune connaissance en Grec)
@@ -127,6 +128,6 @@ adv.	ἐπίμοχθον	laborieusement	ἐπίμοχθος	des : ος, ον a
 τὰ	ἐπιφερόμενα	les offrandes qu'on dépose sur un autel ou sur une tombe en l'honneur d'un mort	ἐπιφέρω	tr. intr. 
 τὰ	ἐπιφερόμενα	les événements futurs, l'avenir	ἐπιφέρω	tr. intr. 
 ```
-Ici aussi, les mots dérivés issus des cas complexes viennent en deuxième partie. Je donne aussi un exemple où le même mot apparaît avec deux sens différents *τὰ ἐπιφερόμενα*.
+    Ici aussi, les mots dérivés issus des cas complexes viennent en deuxième partie. Je donne aussi un exemple où le même mot apparaît avec deux sens différents *τὰ ἐπιφερόμενα*.
 
-Ce dernier fichier [`Bailly_subst.csv`](raw/eulexis/Bailly_subst.csv) est probablement le plus *discutable*. D'une part, il contient peut-être des horreurs dues à mon ignorance de Grec. D'autre part, il pose une question plus fondamentale de savoir quand un adjectif substantivé devient un lemme à part entière. Y a-t-il un critère objectif pour trancher la question ? On peut souvent estimer qu'il y a un substantif sous-entendu (pour donner le genre) et que l'adjectif reste un qualificatif de ce nom inexistant (pas sûr que ça aide beaucoup un étudiant débutant).
+    Ce dernier fichier [`Bailly_subst.csv`](raw/eulexis/Bailly_subst.csv) est probablement le plus *discutable*. D'une part, il contient peut-être des horreurs dues à mon ignorance de Grec. D'autre part, il pose une question plus fondamentale de savoir quand un adjectif substantivé devient un lemme à part entière. Y a-t-il un critère objectif pour trancher la question ? On peut souvent estimer qu'il y a un substantif sous-entendu (pour donner le genre) et que l'adjectif reste un qualificatif de ce nom inexistant (pas sûr que ça aide beaucoup un étudiant débutant).
