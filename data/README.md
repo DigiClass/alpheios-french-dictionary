@@ -105,7 +105,7 @@ Le format des données CSV (Tab comme séparateur) est composé de 5 champs :
 ἀάατος	inviolable ; invincible ; très pénible	38	des : ος, ον 
 1 ἀάω	troubler l'esprit, frapper de vertige ou de folie, avoir l'esprit égaré ; frapper d'une calamité, causer un malheur ; troubler l'esprit, égarer, tromper ; commettre une faute par aveuglement d'esprit	199	tr. intr. 
 ```
-    Les sens tirés des cas complexes ont été ajoutés à la fin du fichier obtenu avec les cas simples. Dans l'exemple ci-dessus, on voit à la fin deux mots qui devraient s'intercaler parmi ceux du début. On voit aussi que **1 ἀάω** est formé du groupement des divers sens (séparés par un ";") et qu'il est devenu trop long.
+Les sens tirés des cas complexes ont été ajoutés à la fin du fichier obtenu avec les cas simples. Dans l'exemple ci-dessus, on voit à la fin deux mots qui devraient s'intercaler parmi ceux du début. On voit aussi que **1 ἀάω** est formé du groupement des divers sens (séparés par un ";") et qu'il est devenu trop long.
 - Le fichier [`Bailly_subst.csv`](raw/eulexis/Bailly_subst.csv) contient les substantifs et les adverbes qui sont perdus dans d'autres articles (souvent des adjectifs, parfois des verbes). Il y a 5 243 lignes (un même mot peut apparaître plusieurs fois ; je n'ai pas encore fait de tri -s'il faut en faire un). Elles donnent :
     1. l'article (pour les substantifs) ou le mot-clef *adv.* (pour les adverbes)
     2. la forme (comme elle était parfois abrégée, je l'ai reconstituée à la main, en espérant ne pas avoir écrit trop d'horreurs -je n'ai aucune connaissance en Grec)
@@ -128,6 +128,6 @@ adv.	ἐπίμοχθον	laborieusement	ἐπίμοχθος	des : ος, ον a
 τὰ	ἐπιφερόμενα	les offrandes qu'on dépose sur un autel ou sur une tombe en l'honneur d'un mort	ἐπιφέρω	tr. intr. 
 τὰ	ἐπιφερόμενα	les événements futurs, l'avenir	ἐπιφέρω	tr. intr. 
 ```
-    Ici aussi, les mots dérivés issus des cas complexes viennent en deuxième partie. Je donne aussi un exemple où le même mot apparaît avec deux sens différents *τὰ ἐπιφερόμενα*.
+Ici aussi, les mots dérivés issus des cas complexes viennent en deuxième partie. Je donne aussi un exemple où le même mot apparaît avec deux sens différents *τὰ ἐπιφερόμενα*.
 
-    Ce dernier fichier [`Bailly_subst.csv`](raw/eulexis/Bailly_subst.csv) est probablement le plus *discutable*. D'une part, il contient peut-être des horreurs dues à mon ignorance de Grec. D'autre part, il pose une question plus fondamentale de savoir quand un adjectif substantivé devient un lemme à part entière. Y a-t-il un critère objectif pour trancher la question ? On peut souvent estimer qu'il y a un substantif sous-entendu (pour donner le genre) et que l'adjectif reste un qualificatif de ce nom inexistant (pas sûr que ça aide beaucoup un étudiant débutant).
+Ce dernier fichier [`Bailly_subst.csv`](raw/eulexis/Bailly_subst.csv) est probablement le plus *discutable*. D'une part, il contient peut-être des horreurs dues à mon ignorance de Grec. D'autre part, il pose une question plus fondamentale de savoir quand un adjectif substantivé devient un lemme à part entière. Y a-t-il un critère objectif pour trancher la question ? On peut souvent estimer qu'il y a un substantif sous-entendu (pour donner le genre) et que l'adjectif reste un qualificatif de ce nom inexistant (pas sûr que ça aide beaucoup un étudiant débutant).
