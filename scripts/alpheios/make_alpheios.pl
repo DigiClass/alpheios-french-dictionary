@@ -5,13 +5,15 @@ use Encode qw/encode decode/;
 
 
 
-open (my $bailly, "<", "../../raw_data/alpheios/Bailly_sens.xml") or die $!;
-open (my $bailly_see, "<", "../../raw_data/alpheios/Bailly_renv.xml") or die $!;
+open (my $bailly, "<", "../../data/raw/alpheios/Bailly_sens.xml") or die $!;
+open (my $bailly_see, "<", "../../data/raw/alpheios/Bailly_renv.xml") or die $!;
+open (my $bailly_subst, "<", "../../data/raw/alpheios/Bailly_subst.xml") or die $!;
 open (my $lsj, "<", "../../../lsj/dat/grc-lsj-defs.dat") or die $!;
 
 my %uc;
 
 my %bailly;
+my %subst_errors;
 while (<$bailly>) {
   chomp;
   my ($lemma, $def) = split /\t/;
@@ -33,6 +35,21 @@ while (<$bailly_see>) {
   my $def = 'see <lang="grc">' . $see . "</grc>";
   for my $entry (@$entries) {
     $bailly{$entry} = $def;
+  }
+}
+
+while (<$bailly_subst>) {
+  chomp;
+  my ($form,$def,$lemma) = split /\t/;
+  my $entries = parse_lemma($lemma);
+  $form = decode('utf8', $form);
+  $def = decode('utf8',$def);
+  for my $entry (@$entries) {
+    if ($bailly{$entry}) {
+    	$bailly{$entry} .= " [ $form: $def ]";
+    } else {
+    	$subst_errors{$entry} = "[ $form: $def ]";
+    }
   }
 }
 
@@ -78,21 +95,26 @@ for my $lemma (sort keys %dat) {
 }
 
 
-open FILE, ">../../raw_data/alpheios/matched.csv";
+open FILE, ">../../data/raw/alpheios/matched.csv";
 for my $lemma (sort keys %matched) {
    print FILE encode('utf8',"$lemma\t$matched{$lemma}->[0]\t$matched{$lemma}->[1]\n");
 }
 close FILE;
-open FILE, ">../../raw_data/alpheios/nolsj.csv";
+open FILE, ">../../data/raw/alpheios/nolsj.csv";
 for my $lemma (sort keys %nolsj) {
   print FILE encode('utf8',"$lemma\t$nolsj{$lemma}\n");
 }
 close FILE;
-open FILE, ">../../raw_data/alpheios/nobailly.csv";
+open FILE, ">../../data/raw/alpheios/nobailly.csv";
 for my $lemma (sort keys %nobailly) {
   print FILE encode('utf8',"$lemma\t$nobailly{$lemma}\n");
 }
 close FILE;
+
+open FILE, ">../../data/raw/alpheios/substerrors.csv";
+for my $lemma (sort keys %subst_errors) {
+  print FILE encode('utf8',"$lemma\t$subst_errors{$lemma}\n");
+}
 
 sub parse_lemma {
   my $lemma = shift;
