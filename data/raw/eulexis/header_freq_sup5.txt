@@ -1,4 +1,6 @@
-
+je suis allé sur le site d'Helma Dik (Logeion):  
+http://artflsrv02.uchicago.edu/perseus/GreekFrequency.html 
+Et y ai téléchargé les lemmes dont la fréquence est supérieure à 5 (strictement). Comme j'aime mieux le chiffre 5, j'ai récupéré aussi les mots dont la fréquence est égale à 5.
 
     HOME
     ABOUT THIS RESOURCE
