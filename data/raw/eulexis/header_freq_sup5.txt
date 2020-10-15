@@ -1,0 +1,34 @@
+
+
+    HOME
+    ABOUT THIS RESOURCE
+    PERSEUS DIGITAL LIBRARY AT TUFTS
+    ARTFL PROJECT
+    CLASSICS AT CHICAGO
+
+Word Frequency in the Greek Texts
+
+    frequency form
+    search form
+    help
+    report a problem
+
+Found 199 Titles (Listed below)
+This may take a few moments......
+Total Number of Words (Tokens): 5293231
+Total Number of Distinct Words (Types): 417033
+
+Displaying Words with Total Frequency Greater Than: 5
+Displaying Words with Total Frequency Less Than: 100000
+
+Number of Words Within Specified Range: 19841
+Sum of Counts: 4106376
+Sum of Rates: 7757.78725697027
+The 19841 distinct words found (4.7577% of 417033 total) cover 77.577873% of the selected corpus.
+
+Il manquait les trois mots les plus fréquents (# d'occ. > 100 000)
+The 3 distinct words found (0.0007% of 417033 total) cover 21.182412% of the selected corpus.
+Soit 98.76%
+
+Auxquels j'ai ajouté les lemmes dont la fréquence est égale à 5 : 1958 lignes soit 0,185%.
+On couvrirait donc 98,95% du corpus.
