@@ -5,7 +5,7 @@ J'ai sélectionné à la main une centaine de lemmes d'Eulexis (qui commencent p
 Le fichier est comme d'habitude un format CSV avec la tabulation comme séparateur. Provisoirement, il est composé de 7 champs :
 - le lemme d'Eulexis en caractères grecs
 - le même en betacode
-- la traduction anglaise (le LSJ + améliorations d'Helma Dik, Logeion)
+- la traduction anglaise (LSJ + améliorations d'Helma Dik, Logeion + mes améliorations)
 - le lemme trouvé dans le Bailly (attention, il peut être différent du lemme cherché : les ? du fichier [Eulexis_Bailly_sens.csv](../Eulexis_Bailly_sens.csv))
 - la traduction française trouvée dans le Bailly
 - la traduction (automatique) en français de la traduction anglaise
@@ -14,7 +14,7 @@ Le fichier est comme d'habitude un format CSV avec la tabulation comme séparate
 L'objectif de l'outil d'édition/sélection est de créer un fichier test0_revu.csv à partir de ce fichier test0.csv en donnant au relecteur la **possibilité** de modifier les traductions anglaise et française de chaque lemme (la question de la traduction en Allemand doit être discutée) et le **devoir** de choisir entre les deux traductions françaises si elles existent simultanément. Le fichier revu ne contiendra que 5 colonnes, éventuellement une 6e pour indiquer s'il s'agit d'un simple choix (par défaut), si une erreur a été trouvée et corrigée ou si la traduction a été améliorée ou raccourcie (et par qui ?). On aura donc :
 - le lemme d'Eulexis en caractères grecs
 - le même en betacode
-- la traduction anglaise éventuellement éditée
+- la traduction anglaise, éventuellement éditée
 - la traduction française choisie et/ou éditée
 - la traduction (automatique) en allemand de la traduction anglaise
 - des indications supplémentaires ?

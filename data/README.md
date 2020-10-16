@@ -81,7 +81,7 @@ Le *vrai* fichier avec lequel Eulexis fonctionne ne contient pas la première co
 
 `Logeion_freq_sup5.csv` est le fichier de Logeion (merci, Helma !) avec les lemmes (de Logeion) dont la fréquence (le nombre d'occurrences) est supérieure ou égale à 5. Comme le corpus compte plus de 5 millions de mots, cette fréquence de 5 signifie que l'on peut lire 1 million de mots sans rencontrer ces lemmes-là. Ça n'est évidemment pas vrai, car il peut y avoir un texte de mille mots qui emploiera un de ces lemmes 5 fois. Cette digression statistico-philosophique mise à part, ces 21 802 lemmes couvrent presque 99% du corpus (98,95% précisément). À côté de ce fichier, j'ai mis `header_freq_sup5.txt` qui indique en particulier le site d'où j'ai tiré ces données extrêmement précieuses. Les fichiers obtenus sont simplement des copier-coller des pages offertes par Helma (Logeion).
 
-J'ai mis aussi dans le répertoire "test" deux fichiers `test0.csv` et [`test0.md`](../test/test0.csv) (ce 2e est la description du premier). `test0.csv` préfigure les fichiers que les correcteurs devront télécharger et éditer avec un outil ad hoc que j'aurai développé dans Eulexis. Mais il y a encore du chemin à parcourir... 
+J'ai mis aussi dans le répertoire "test" deux fichiers `test0.csv` et [`test0.md`](../test/test0.md) (ce 2e est la description du premier). `test0.csv` préfigure les fichiers que les correcteurs devront télécharger et éditer avec un outil ad hoc que j'aurai développé dans Eulexis. Mais il y a encore du chemin à parcourir... 
 
 #### Anciens fichiers avec les entrées secondaires :
 
