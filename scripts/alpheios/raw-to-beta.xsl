@@ -25,7 +25,7 @@
     Stylesheet to convert <wd> elements in betacode to unicode
   -->
     
-    <xsl:output media-type="text/xml" xml:space="preserve" indent="no"/>
+    <xsl:output media-type="text/xml" xml:space="preserve" indent="no" encoding="UTF-8"/>
     <xsl:include href="uni2betacode.xsl"/>
     
     <xsl:template match="/root">
