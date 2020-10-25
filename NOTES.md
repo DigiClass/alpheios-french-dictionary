@@ -57,11 +57,23 @@ Il y a aussi un grand nombre de mots avec un préfixe pouvant avoir des sens dif
 
 A priori, je vais essayer de dater mes commentaires qu'il faut considérer comme des *mises à jour*, c'est à dire qu'il faudrait les lire *de bas en haut*. Je ne garantis pas que je n'ajouterai pas quelque chose dans un paragraphe déjà écrit à une date antérieure.
 
-## Mardi 13 octobre 2020
+## Dimanche 25 octobre 2020
 
-I've rerun the alpheios scripts, this time including the data in the Bailly_subst.csv file. For the moment, I've appended the additional senses to the main lemma entry in the format [ substantive (without article): definition ].  I'm sure this isn't exactly what we would want to do with them, but I thought it might be helpful to see them in the Alpheios results. A new file data/raw/alpheios/subst_errors.csv contains entries from the Bailly_subst.csv file which I couldn't match with lemmas in Bailly_sens.csv (I think there were mainly to do data formatting issues, there are only a handful of them).
+J'ai passé un peu de temps à améliorer les traductions existantes. Je fais une nouvelle version du lexique d'Eulexis `trad_gr_en_fr_de_travail_6.csv`. Par curiosité, j'ai fait un *diff* avec la version 3 et j'en suis à presque 12 000 modifications (11 961, pour être précis). Je vais maintenant faire un alignement des données du Bailly avec ce nouveau lexique et me lancer dans l'outil de correction. Il y a quelques jours, je racontais à Bridget ce que j'envisageais de faire. **YAKA** (en bon Français "il n'y a qu'à...").
 
-We now have 60,572 matched and 35,001 unmatched from the Alpheios LSJ index. 
+Well, my first intention with my code was to **select** one of the French translations, and to save a file almost in the same format as "trad_gr_en..." (i.e. the lemma with its three translations in English, French and German). But I have changed my mind as it is not difficult to keep all the existing information, **adding** the selected French translation. The first motive for this change in opinion is that it allows to review the reviewed files. Elaborating on that, it is not a problem to offer the possibility of editing all the fields and **to save** the edited translations (even the non-selected ones). Then, the reviewer can go through the multiple lemmata found in Bailly that fit the requested one, modifying each translation. It can be decided that the suppression of a translation means that the corresponding lemma in Bailly is not relevant. I have not yet written a single line of code to do that, but it seems feasible.
+
+My present idea is to gather the multiple lines with the same lemma (i.e. the lines in Eulexis_Bailly_sens.csv starting with * or ? followed by the same id. number) in a 3D representation, the found lemmata with their translation being in the depth (third dimension) : a normal CSV-file is a 2D object (a cell is located by giving a line number and a column number). In the cells corresponding to "lem_tr" and "sens", I'll have a list. Unfolding this list as extra lines will allow to come back to the format of Eulexis_Bailly_sens.csv at the end of the correction process.
+
+The multi-line lemmata are between 10 and 15% of the total. It is not so much (a few thousands anyhow). I would be happy to see the first round reaching its end. And I fear that we'll never see a second round. The first thing to do is to treat the 20-25 k-lemma which are "frequent" (≥5). Then, if there is a second step, is it to check the next 40-50 k-lemma for which Bailly has a translation or to sort the substantives that I have dug out ? And another 40 k-lemma have no translation in Bailly, but it would be nice to check their translations too.
+
+En fait, il y a quatre catégories de lemmes :
+- les lemmes fréquents (nombre d'occurrences ≥ 5) et j'y ajoute les cas où un helléniste doit trancher entre plusieurs solutions, exactes ou approchées
+- les lemmes moins fréquents où j'ai le choix entre une nouvelle traduction issue du Bailly et l'ancienne (traduite du LSJ)
+- les lemmes moins fréquents pour lesquels le Bailly n'a rien donné (mais si on corrige autant tout corriger)
+- les lemmes que j'ai gardés par erreur (maintenant que j'ai changé mon programme pour donner la traduction du radical sans m'occuper du préverbe, je pourrais éliminer tous les verbes composés du lexique).
+
+Je ne sais pas encore précisément combien de lemmes entreront dans chaque catégorie. Pour la première ce sera environ 25 000 lemmes.
 
 ## Lundi 12 octobre 2020
 
