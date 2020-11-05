@@ -81,7 +81,7 @@ il la met au premier plan plutôt que d'ouvrir un nouveau fichier.
 Les quatre premières lignes sont informatives et ne peuvent pas être modifiées.
 Elles contiennent :
 1. un indicateur de progression (_ici 1/9_) qui donne le numéro du lemme et le nombre total de lemmes à traiter dans ce fichier
-2. les lemmes précédent (à gauche, _ici il est vide_) et suivant (à droite) –cette indication est utile essentiellement dans le cas où il y a des homonymes–
+2. les lemmes précédent (à gauche, _ici il est vide_) et suivant (à droite) –cette indication est utile surtout pour les homonymes–
 3. le lemme à examiner en caractères grecs
 4. le lemme à examiner en betacode
 
@@ -108,7 +108,7 @@ une attention redoublée.
 Si le fond est **blanc**, il n'y a qu'une solution et elle est _exacte_. 
 Il n'y a pas lieu de s'en soucier.
 Si le lemme n'a pas été trouvé dans le Bailly, la comboBox restera vide et
-sera grisée. La fenêtre d'édition sera aussi désactivée.
+sera **grisée**. La fenêtre d'édition sera aussi désactivée.
 La seule traduction française disponible est alors celle d'Eulexis
 qu'il conviendra d'éditer (voir ci-dessus).
 Si le fond est **jaune orangé**, il n'y a toujours qu'une solution **mais** 
@@ -136,6 +136,9 @@ le programme choisit la traduction du Bailly si elle existe.
 Si le lemme a déjà été revu (soit parce que l'on est revenu en arrière, 
 soit parce que l'on a ouvert un fichier *revu*), c'est la traduction d'Eulexis
 qui est validée par défaut (elle contient la traduction qui a été sélectionnée !).
+Le dernier bouton _Remettre le choix_ doit être utilisé avec parcimonie et être réservé
+aux cas difficiles ou indécidables. Il est recommandé de laisser un commentaire.
+À un moment ou à un autre, quelqu'un devra faire un choix...
 
 La dernière ligne porte les boutons d'action. A priori, le seul à utiliser est
 le dernier à droite qui sert à valider les modifications et les choix.
@@ -150,9 +153,13 @@ Le bouton de gauche permet de revenir au lemme précédent (dans l'image ci-dess
 Si on a déjà modifié les traductions et que l'on veut quand même revenir en arrière, 
 il conviendra de **valider** d'abord et de revenir de deux pas en arrière.
 La sauvegarde des données se fait automatiquement à la fin du fichier.
-Le bouton `Save` est à utiliser si on doit laisser le travail en plan 
+Le bouton `Save` n'est à utiliser que si on doit laisser le travail en plan 
 et que l'on craint une possible panne de l'ordinateur. Une fois la sauvegarde faite,
 seront proposées deux options : continuer ou interrompre la vérification.
+**Attention !** comme le bouton de retour en arrière, le bouton `Save` ne valide pas 
+les modifications en cours. Ce n'est pas un problème si on continue son travail.
+En revanche, les modifications présentes sur l'écran mais pas validées seront
+perdues si on choisit d'interrompre l'activité.
 Une vérification interrompue peut être reprise en ouvrant le fichier _revu_.
 Le programme avance automatiquement jusqu'au premier lemme qui n'a pas été revu.
 Si l'ensemble du fichier a été revu, on recommence au début.
@@ -162,6 +169,24 @@ Si l'ensemble du fichier a été revu, on recommence au début.
 #### La comboBox
 
 #### Les boutons-radios
+
+Le principe des boutons-radios est qu'il faut en choisir un (et un seul).
+Ils conviennent donc parfaitement pour notre **mission première** qui consiste
+à **choisir** entre la traduction française d'Eulexis et une nouvelle traduction
+issue du dépouillement automatique du **Bailly**.
+Toutefois, nous avons envisagé une troisième possibilité qui est de `Remettre le choix` 
+à plus tard. Ce _non-choix_ n'est pas une solution à privilégier.
+Tôt ou tard, d'une façon ou d'une autre, quelqu'un devra décider d'une traduction à
+donner au lemme. Il faut donc considérer ce _non-choix_ comme un _Joker_ 
+que l'on peut tirer de sa manche. Comme je l'ai dit plus haut,
+un commentaire sera bienvenu pour aider celui qui héritera du problème.
+
+A priori, le programme fait un choix raisonnable pour l'utilisateur :
+- si le Bailly propose une ou plusieurs solutions, la traduction issue du Bailly est sélectionnée
+- si le Bailly n'a pas le lemme demandé, la traduction d'Eulexis est la seule possible
+- si le lemme a déjà été examiné, la traduction d'Eulexis (la nouvelle) est privilégiée.
+
+Bien évidemment, le correcteur peut changer ce choix par défaut, en particulier, si la traduction initiale d'Eulexis est satisfaisante et meilleure que celle tirée du Bailly.
 
 #### Le bouton de "Validation"
 
