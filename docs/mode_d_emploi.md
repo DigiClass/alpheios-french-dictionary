@@ -41,7 +41,9 @@ j'ai utilisé un fichier d'Helma Dik (de Logeion) qui donne le nombre d'occurren
 relevées dans le corpus traité pour les divers lemmes. 
 En se limitant aux lemmes qui apparaissent plus de *cinq* fois, on couvre presque 
 **99%** du corpus avec *seulement* ≈20 000 lemmes. 
-C'est donc ce premier lot qu'il faut traiter pour commencer.
+Pour se donner un premier objectif facilement accessible, on a préféré recouper
+ces 20 000 lemmes en deux en prenant d'abord ceux dont la fréquence est supérieure à 100.
+C'est donc ce premier lot de ≈6 000 lemmes qu'il faut traiter pour commencer.
 
 Bien que les fichiers à traiter soient des fichiers CSV, **il n'est pas recommandé**
 de les ouvrir et/ou de les éditer en dehors de l'outil conçu pour cela 
@@ -55,7 +57,8 @@ le fichier *revu* doit être retourné au coordinateur qui les regroupe.
 Pour revoir et corriger l'ensemble des traductions d'Eulexis, j'ai développé 
 un outil spécial que l'on trouve dans le menu "Extra/Vérifier les traductions".
 S'ouvre alors une boîte de dialogue pour choisir le fichier à traiter.
-On voit alors apparaître une fenêtre d'édition comme celle-ci :
+Quand ce premier choix est fait,
+on voit apparaître une fenêtre d'édition comme celle-ci :
 ![fenêtre d'édition initiale](images_MdE/Image1.png)
 En même temps, s'affichent dans la fenêtre principale d'Eulexis les articles
 de dictionnaire correspondant au lemme traité.
@@ -64,12 +67,15 @@ Personnellement, je recommande de les afficher **tous** :
 en effet, ils peuvent contenir des informations complémentaires et précieuses.
 
 La boîte de dialogue s'ouvre, par défaut, au milieu de la fenêtre principale.
-Il vaut donc mieux la déplacer pour que la lecture des dictionnaires puisse se faire 
+Il vaut donc **mieux la déplacer** pour que la lecture des dictionnaires puisse se faire 
 sans qu'il soit nécessaire de changer de fenêtre active (sur Mac, on peut faire 
 défiler le contenu d'une fenêtre sans qu'elle soit active).
 Cela permet aussi de revenir par un simple clic sur la boîte de dialogue 
 si on l'a quittée pour aller faire autre chose (en particulier, suivre un renvoi 
-dans les dictionnaires).
+dans les dictionnaires). On peut évidemment faire d'autres choses sans fermer
+cette boîte de dialogue : consulter le LSJ sur Logeion (le LSJ d'Eulexis a *perdu*
+les numéros des sens), aller voir le Pape sur Zeno.org (l'original), parcourir
+quelque fichier que l'on a sur l'ordinateur ou même répondre à un mail urgent.
 Si la boîte de dialogue a été enterrée sous d'autres fenêtres, 
 il est possible de la remettre au premier plan en retournant
 dans le menu "Extra/Vérifier les traductions".
@@ -102,7 +108,7 @@ car il peut y avoir plusieurs candidats pour un même lemme.
 En plus de la fenêtre d'édition (qui est plus grande car l'extraction automatique
 des traductions a parfois donné des traductions trop longues), 
 j'ai dû mettre une **comboBox**.
-Après le titre `Bailly`, la **comboBox** donne la ou les solutions trouvée(s). 
+Après le titre `Bailly`, la **comboBox** donne la (ou les) solution(s) trouvée(s). 
 Par convention, je mets un fond de couleur quand cette comboBox requiert
 une attention redoublée. 
 Si le fond est **blanc**, il n'y a qu'une solution et elle est _exacte_. 
@@ -115,7 +121,7 @@ Si le fond est **jaune orangé**, il n'y a toujours qu'une solution **mais**
 elle est _approchée_. 
 Elle peut différer du lemme recherché par un accent, un esprit 
 (plus généralement, un signe diacritique) ou une majuscule/minuscule.
-La conduite à tenir est décrite plus en détails dans la section suivante.
+La conduite à tenir est décrite plus en détails dans la section suivante, avec quelques exemples en fin de document.
 S'il y a **plusieurs** solutions possibles, le fond de la comboBox sera **vert** 
 (solutions _exactes_) ou **rouge** (solutions _approchées_). 
 Il y a alors **un choix de plus** à effectuer. 
@@ -124,7 +130,7 @@ la comboBox. Lors de la **validation** (voir plus bas), c'est la traduction affi
 qui sera choisie comme nouvelle traduction (donc celle qui correspond au 
 lemme choisi dans la comboBox, éventuellement modifiée). 
 
-**Nota bene :** si le (ou les) lemme(s) proposés par le Bailly **ne sont pas bons**,
+**Nota bene :** si le (ou les) lemme(s) proposé(s) par le Bailly **ne sont pas bons**,
 il conviendrait de les retirer de la liste. Comme il n'est pas possible de retirer un 
 élément d'une comboBox, le correcteur **doit indiquer** que le lemme trouvé dans le Bailly
 ne correspond pas à celui recherché en **effaçant la traduction**. Il devra alors
@@ -141,7 +147,7 @@ utiliser ce fichier à condition que nous n'y introduisions pas de lien déplac�
 
 La ligne de commentaire est facultative : elle sera sauvée dans le fichier *revu*.
 Elle sera également affichée à nouveau si on ouvre le fichier *revu* une deuxième fois 
-ou que l'on revient sur un lemme déjà traité (avant d'avoir terminer le fichier).
+ou que l'on revient sur un lemme déjà traité (avant d'avoir terminé le fichier).
 Il est recommandé de l'utiliser si on souhaite laisser des indications, 
 en particulier lorsque l'on utilise l'option "Remettre le choix" (voir ci-dessous).
 
@@ -164,11 +170,11 @@ dans la fenêtre multiligne d'édition de la traduction du Bailly.
 En effet, dans ce cas-là, le système intercepte le `Return` pour insérer 
 un saut de ligne dans ladite fenêtre. 
 Après la validation, le programme passe au lemme suivant.
-Le bouton à la gauche du bouton de validation permet de revenir au lemme précédent 
+Le bouton de gauche permet de revenir au lemme précédent 
 (dans l'image ci-dessus, il est vide car on est au début du fichier).
 **Attention !** ce bouton ne valide pas les modifications en cours.
 Si on a déjà modifié les traductions et que l'on veut quand même revenir en arrière, 
-il conviendra de **valider** d'abord et de revenir de deux pas en arrière.
+il conviendra de **valider d'abord** et de revenir de **deux pas** en arrière.
 La sauvegarde des données se fait automatiquement à la fin du fichier.
 Le bouton `Save` n'est à utiliser que si on doit laisser le travail en plan 
 et que l'on craint une possible panne de l'ordinateur. Une fois la sauvegarde faite,
@@ -272,7 +278,7 @@ et la choisir. Toutefois, étant conscient que cela imposerait beaucoup de trava
 supplémentaire et en considérant qu'il n'y a pas **ici** d'ambiguïté possible,
 la première solution est acceptable.
 
-#### Exemple d'homonymes
+#### Exemples d'homonymes
 
 Les cas d'homonymie ne sont pas rares, mais il ne m'a pas été facile d'en dénicher
 un simple :
@@ -348,7 +354,8 @@ d'Eulexis pour quelque chose du genre _fête pour célébrer l'adolescence_.
 ````
 Les deux entrées du Bailly sont approximatives et ne conviennent ni l'une ni l'autre.
 ![φύσκος dans Eulexis](images_MdE/fuskos_Eulexis.png)
-Ce sont en effet deux noms propres, l'un de personnes et l'autre de lieux.
+Ce sont en effet deux noms de lieux, l'un masculin (montagne ou rivière) 
+et l'autre féminin (ville).
 Il **faut** donc les effacer toutes les deux et se reporter sur la traduction d'Eulexis.
 "Botellus" est la traduction latine du mot grec et ne convient pas vraiment. 
 Une solution est d'aller voir dans Collatinus (i.e. dans le Gaffiot) 
@@ -357,6 +364,7 @@ On trouve alors *boudin, saucisson, [en gén.] boyau farci*.
 Dans l'article φύσκος du Pape, on a un renvoi à *φύσκη 2*, avec une difficulté
 manifeste liée à ce **2** alors que l'article correspondant ne contient pas de numéro.
 ![φύσκη dans Pape sur zeno.org](images_MdE/fuskh_os_Pape.png)
+
 Situation d'autant plus compliquée que le Pape donne deux sens bien distincts
 (séparés par un –) et un troisième sens plus ou moins caché (en 2e position).
 Le dernier sens de *callosité ou ampoule dans les mains* est absent du Bailly
