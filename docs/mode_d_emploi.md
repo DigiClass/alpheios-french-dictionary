@@ -221,7 +221,7 @@ Alors que le **jaune-orangé**, plus accrocheur, nous prévient qu'il faut redou
 d'attention car la solution proposée n'est qu'approchée.
 Lorsque le fond est **vert** ou **rouge**, il y a plusieurs items 
 dans la comboBox et il **faut** faire un choix supplémentaire entre ces items.
-Le fond <span style="background-color: #A0FFA0">**vert**</span>, plus doux et apaisant, nous dit que les solutions sont exactes.
+Le fond **<span style="background-color: #A0FFA0">vert</span>**, plus doux et apaisant, nous dit que les solutions sont exactes.
 Le fond **rouge**, plus agressif, nous dit que les solutions sont approchées.
 
 *Remarque :* lorsque j'ai trouvé une solution exacte, je ne suis pas allé chercher
