@@ -234,7 +234,8 @@ les dicos s'accordent pour dire qu'il y en a trois, signifiant respectivement,
 Le LSJ et le Pape ont deux homonymes ἄρμα et un lemme non-ambigu ἅρμα, alors que
 le Bailly donne deux ἅρμα et un seul ἄρμα. Je n'ai évidemment pas d'opinion sur le sujet,
 mais si vous êtes convaincus que c'est une erreur de Bailly, n'hésitez pas
-à le signaler à Gérard Gréco
+à le signaler à Gérard Gréco. D'ailleurs, c'est vrai de manière très générale : 
+**toute erreur** trouvée, signalée et corrigée est une erreur en moins !
 
 #### Les boutons-radios
 
@@ -346,8 +347,18 @@ Il n'y a qu'un seul lemme ** βρῶμος** dans Eulexis, alors que les Bailly 
 ````TSV
 βρῶμος	stink, noisome smell	2 βρῶμος [gens : ου (ὁ) ]@1 βρῶμος > βρῶμα [gens : ου (ὁ) ]	odeur infecte@ce qu'on mange ; ce qui est mangé ou rongé ; action de dévorer	puant, odeur bruyante
 ````
-Ce *caveat* étant posé, on sélectionnera la traduction *odeur infecte* de **2 βρῶμος**
-en ayant soin d'effacer la traduction de **1 βρῶμος** qui est celle de βρῶμα.
+Ce *caveat* étant posé, on sélectionnera la traduction *odeur infecte* de **2 βρῶμος**.
+La question d'effacer ou pas la traduction de **1 βρῶμος** (qui est celle de βρῶμα)
+peut se poser. En effet, ce sens pourra être employé quelque part.
+La question se pose de façon plus manifeste pour σφόδρα :
+````TSV
+σφόδρα	very, exceedingly	σφόδρα [subst. adv. ]@τὸ σφόδρα (in σφόδρα) [subst. adv. ]	fortement, avec véhémence ; sévèrement, durement ; avec une précision rigoureuse (définir) ; très, fort, tout à fait@la véhémence
+````
+La traduction anglaise suggère fortement qu'il s'agit ici de l'adverbe : on validera donc 
+le premier choix (en raccourcissant la traduction ?). 
+Toutefois, l'emploi de ce mot comme substantif n'est pas absurde. 
+Le LSJ dit d'ailleurs aussi, dans l'article σφόδρα (adv.), `τὸ σ., = σφοδρότης`, 
+en parfait accord avec Bailly.
 
 Les traductions anglaises de συννέω et συννέω2 sont les mêmes, 
 alors que le LSJ donne bien deux homonymes différents.
