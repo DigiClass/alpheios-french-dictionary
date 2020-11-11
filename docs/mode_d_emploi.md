@@ -42,7 +42,7 @@ relevées dans le corpus traité pour les divers lemmes.
 En se limitant aux lemmes qui apparaissent plus de *cinq* fois, on couvre presque 
 **99%** du corpus avec *seulement* ≈20 000 lemmes. 
 Pour se donner un premier objectif facilement accessible, on a préféré recouper
-ces 20 000 lemmes en deux en prenant d'abord ceux dont la fréquence est supérieure à 100.
+ces 20 000 lemmes en deux en prenant d'abord ceux dont la fréquence est supérieure à 40.
 C'est donc ce premier lot de ≈6 000 lemmes qu'il faut traiter pour commencer.
 
 Bien que les fichiers à traiter soient des fichiers CSV, **il n'est pas recommandé**
@@ -190,6 +190,51 @@ Si l'ensemble du fichier a été revu, on recommence au début.
 ### Détails
 
 #### La comboBox
+
+Comme je le disais plus haut, la comboBox a été introduite parce que, dans certains cas,
+plusieurs entrées du Bailly correspondent au lemme demandé. D'autre part,
+si le lemme recherché n'a pas été trouvé dans le Bailly, je le dépouille de tous
+ses signes diacritiques et d'une éventuelle majuscule et je cherche à nouveau
+dans le Bailly. Cela permet de retrouver des mots pour lesquels l'accent n'est pas
+bien déterminé (ou qui a des variantes). Les trémas sont aussi souvent pomme de discorde.
+Mais ce faisant, on introduit inévitablement des *faux positifs* qu'il faudra éliminer.
+À l'affichage des dictionnaires dans Eulexis, la recherche se fait également
+**sans tenir compte** des signes diacritiques et de la majuscule.
+Donc, l'ensemble des articles affichés dans la fenêtre principale **ne sont pas 
+nécessairement pertinents**.
+
+Le cas le plus courant (90% dans le premier lot) est celui où **une seule solution 
+exacte** a été trouvée. Le cas où il y a **deux** ou plus **solutions exactes**
+se produit pour 8% des lemmes. Les 2% restant se partagent équitablement entre 
+les cas où je n'ai pas trouvé le lemme dans le Bailly et ceux où il y a une ou
+plusieurs **solutions approchées**. J'ai enrichi le second lot avec les cas approchés
+trouvés dans l'ensemble des lemmes (y compris ceux de fréquence faible), 
+si bien que les pourcentages y seront différents. Les mots que je n'ai pas trouvés 
+dans le Bailly sont plus aussi nombreux parmi les lemmes moins fréquents.
+
+Pour que le correcteur sache immédiatement si la comboBox est peuplée ou pas, 
+je lui ai donné un fond de couleur.
+Lorsque le fond est **blanc** ou **jaune-orangé**, il n'y a qu'un seul item 
+dans la comboBox et il est inutile d'aller l'explorer. 
+Le fond **blanc** nous dit de plus que la solution est exacte. 
+Alors que le **jaune-orangé**, plus accrocheur, nous prévient qu'il faut redoubler
+d'attention car la solution proposée n'est qu'approchée.
+Lorsque le fond est **vert** ou **rouge**, il y a plusieurs items 
+dans la comboBox et il **faut** faire un choix supplémentaire entre ces items.
+Le fond <span style="background-color: #A0FFA0">**vert**</span>, plus doux et apaisant, nous dit que les solutions sont exactes.
+Le fond **rouge**, plus agressif, nous dit que les solutions sont approchées.
+
+*Remarque :* lorsque j'ai trouvé une solution exacte, je ne suis pas allé chercher
+des solutions approchées. Il n'y a donc pas de cas mixte où une solution serait exacte
+et une autre pas. Je ne sais pas si le cas se produit, mais il se pourrait que
+mon programme ait trouvé une solution exacte alors que la bonne solution serait 
+approchée. Il y a en effet des cas pathologiques comme, par exemple, `arma` :
+les dicos s'accordent pour dire qu'il y en a trois, signifiant respectivement,
+*chariot*, *union* et *nourriture*. Sauf qu'ils ne sont pas du même avis pour l'esprit.
+Le LSJ et le Pape ont deux homonymes ἄρμα et un lemme non-ambigu ἅρμα, alors que
+le Bailly donne deux ἅρμα et un seul ἄρμα. Je n'ai évidemment pas d'opinion sur le sujet,
+mais si vous êtes convaincus que c'est une erreur de Bailly, n'hésitez pas
+à le signaler à Gérard Gréco
 
 #### Les boutons-radios
 
