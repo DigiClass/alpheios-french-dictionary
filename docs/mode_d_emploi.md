@@ -171,18 +171,18 @@ En effet, dans ce cas-là, le système intercepte le `Return` pour insérer
 un saut de ligne dans ladite fenêtre. 
 Après la validation, le programme passe au lemme suivant.
 Le bouton de gauche permet de revenir au lemme précédent 
-(dans l'image ci-dessus, il est vide car on est au début du fichier).
+(dans l'image ci-dessus, il est vide car on est au début du fichier).\
 **Attention !** ce bouton ne valide pas les modifications en cours.
 Si on a déjà modifié les traductions et que l'on veut quand même revenir en arrière, 
-il conviendra de **valider d'abord** et de revenir de **deux pas** en arrière.
+il conviendra de **valider d'abord** et de revenir de **deux pas** en arrière.\
 La sauvegarde des données se fait automatiquement à la fin du fichier.
 Le bouton `Save` n'est à utiliser que si on doit laisser le travail en plan 
 et que l'on craint une possible panne de l'ordinateur. Une fois la sauvegarde faite,
-seront proposées deux options : continuer ou interrompre la vérification.
+seront proposées deux options : continuer ou interrompre la vérification.\
 **Attention !** comme le bouton de retour en arrière, le bouton `Save` ne valide pas 
 les modifications en cours. Ce n'est pas un problème si on continue son travail.
 En revanche, les modifications présentes sur l'écran mais pas validées seront
-**perdues** si on choisit d'interrompre l'activité.
+**perdues** si on choisit d'interrompre l'activité.\
 Une vérification interrompue peut être reprise en ouvrant le fichier _revu_.
 Le programme avance automatiquement jusqu'au premier lemme qui n'a pas été revu.
 Si l'ensemble du fichier a été revu, on recommence au début.
@@ -221,7 +221,9 @@ Alors que le **jaune-orangé**, plus accrocheur, nous prévient qu'il faut redou
 d'attention car la solution proposée n'est qu'approchée.
 Lorsque le fond est **vert** ou **rouge**, il y a plusieurs items 
 dans la comboBox et il **faut** faire un choix supplémentaire entre ces items.
-Le fond **<font style="background-color: #A0FFA0;">vert</font>**, plus doux et apaisant, nous dit que les solutions sont exactes.
+Le fond 
+<span style="background-color:#A0FFA0; font-weight:bold; ">vert, </span>
+plus doux et apaisant, nous dit que les solutions sont exactes.
 Le fond **rouge**, plus agressif, nous dit que les solutions sont approchées.
 
 *Remarque :* lorsque j'ai trouvé une solution exacte, je ne suis pas allé chercher
@@ -263,11 +265,18 @@ Le bouton de `Validation` est la pièce maîtresse du dispositif. Associé au ch
 fait à l'aide des *boutons-radios*, il enregistre la nouvelle traduction française
 pour le lemme traité. Il enregistre également les traductions anglaise et allemande
 qui peuvent avoir été modifiées.
-**Toutefois**, en validant une traduction du Bailly, on fait *plus que* d'adopter
+Lorsque le choix est fait en faveur de la traduction du Bailly,
+l'ancienne traduction d'Eulexis est conservée parmi celles du Bailly.
+On pourra donc éventuellement y revenir.
+Une conséquence de ce transfert de la traduction d'Eulexis vers les traductions du Bailly
+peut faire changer la couleur de la comboBox si on revient en arrière.
+Seulement dans le cas de solutions approchées où elle pourra virer du **jaune-orangé**
+au **rouge**.
+
+En validant une traduction du Bailly, on fait *plus que* d'adopter
 une nouvelle traduction : on *établit* un lien entre le lemme d'Eulexis 
 (qui est _grosso modo_ celui du LSJ) et une entrée du Bailly.
-
-Considérons à titre d'exemple, un cas où la traduction actuelle d'Eulexis et la même
+Considérons à titre d'exemple, un cas où la traduction actuelle d'Eulexis est la même
 que celle tirée du Bailly. Je peux donc choisir indifféremment l'une ou l'autre 
 ça ne changera pas la traduction finale (puisqu'elles sont égales). 
 Toutefois, est-ce que l'information apportée par les deux choix est la même ?
@@ -278,7 +287,31 @@ au lemme recherché. Je donne plus bas quelques exemples *représentatifs*.
 
 #### Le bouton de retour
 
+Le bouton de retour (à gauche) a été ajouté tardivement. 
+Il n'est pas nécessaire mais permet ne revenir en arrière si jamais on a un doute.
+On peut évidemment remonter jusqu'au début du fichier (mais pas au delà) en appuyant 
+plusieurs fois sur ce bouton.
+
+**Attention !** ce bouton ne valide pas les modifications en cours.
+Si on a déjà modifié les traductions et que l'on veut quand même revenir en arrière, 
+il conviendra de **valider d'abord** et de revenir de **deux pas** en arrière.
+
 #### Le bouton "Save"
+
+Ce bouton est a priori inutile. 
+En effet, le travail sera sauvé automatiquement quand la fin du fichier sera atteinte.
+À moins d'avoir un ordinateur particulièrement instable ou de savoir devoir
+interrompre l'activité pendant longtemps, on pourra se passer de ce bouton `Save`.\
+Lorsque la sauvegarde est effectuée, le programme propose de reprendre la correction 
+ou de l'interrompre.
+Une vérification interrompue peut être reprise en ouvrant le fichier _revu_.
+Le programme avance automatiquement jusqu'au premier lemme qui n'a pas été revu.
+Si l'ensemble du fichier a été revu, on recommence au début.
+
+**Attention !** comme le bouton de retour en arrière, le bouton `Save` ne valide pas 
+les modifications en cours. Ce n'est pas un problème si on continue son travail.
+En revanche, les modifications présentes sur l'écran mais non validées seront
+**perdues** si on choisit d'interrompre l'activité.
 
 #### Le bouton "Undo"
 
@@ -297,16 +330,16 @@ souhaitant revenir à ce qu'il y avait avant (tout en voulant conserver les
 modifications faites sur la traduction allemande). Il suffit de placer le curseur
 dans la ligne de la traduction anglaise et à faire `Ctrl-Z`. C'est magique :
 la modification de la traduction anglaise est annulée **et**
-ce qui a été fait après dans la case des traductions allemandes est maintenu.
+ce qui a été fait **après** dans la case des traductions allemandes est maintenu.\
 **Remarque :** cela ne fonctionne pas dans le cadre des traductions du Bailly,
 si on change de lemme avec la comboBox (cela fonctionne si on n'a pas changé de lemme).
 
-En revanche, si on ouvre un fichier *revu* et que le fichier d'origine est resté à côté
+Si on ouvre un fichier *revu* et que le fichier d'origine est resté à côté
 du fichier créé (ce qui est normalement le cas), le correcteur peut revenir
 aux données telles qu'elles étaient dans le fichier d'origine (annulant ainsi toutes les 
 modifications) ou aux données déjà revues (n'annulant que les dernières modifications).
 
-### Exemples
+## Exemples
 
 On a vu plus haut que le choix d'une traduction du Bailly est plus que la simple
 attribution d'une nouvelle traduction au lemme, puisqu'il lie ce dernier à
@@ -324,7 +357,7 @@ et la choisir. Toutefois, étant conscient que cela imposerait beaucoup de trava
 supplémentaire et en considérant qu'il n'y a pas **ici** d'ambiguïté possible,
 la première solution est acceptable.
 
-#### Exemples d'homonymes
+### Exemples d'homonymes
 
 Les cas d'homonymie ne sont pas rares, mais il ne m'a pas été facile d'en dénicher
 un simple :
@@ -349,7 +382,7 @@ Il n'y a qu'un seul lemme ** βρῶμος** dans Eulexis, alors que les Bailly 
 ````
 Ce *caveat* étant posé, on sélectionnera la traduction *odeur infecte* de **2 βρῶμος**.
 La question d'effacer ou pas la traduction de **1 βρῶμος** (qui est celle de βρῶμα)
-peut se poser. En effet, ce sens pourra être employé quelque part.
+peut se poser. En effet, ce sens pourrait être employé quelque part.
 La question se pose de façon plus manifeste pour σφόδρα :
 ````TSV
 σφόδρα	very, exceedingly	σφόδρα [subst. adv. ]@τὸ σφόδρα (in σφόδρα) [subst. adv. ]	fortement, avec véhémence ; sévèrement, durement ; avec une précision rigoureuse (définir) ; très, fort, tout à fait@la véhémence
@@ -382,7 +415,7 @@ On va suivre les traductions anglaises et associer **καταδέω _et_ κατ
 A priori, l'un des deux lemmes καταδέω _et_ καταδέω1 devrait pouvoir être éliminé,
 mais cela dépasse largement le but que l'on s'est donné ici.
 
-#### Exemple approché (juste)
+### Exemple approché (juste)
 
 ````TSV
 κόιλος	hollow	κοῖλος [des : η, ον subst. ]	creux ; creusé, travaillé en creux, ciselé	creux
@@ -391,7 +424,7 @@ Le lemme d'Eulexis est **κόιλος** alors que les dicos s'accordent sur **�
 comme entrée principale. Tous mentionnent aussi la forme **κόϊλος**. 
 Les traductions concordent également, il semble donc légitime de lier les deux lemmes.
 
-#### Exemple approché (faux)
+### Exemple approché (faux)
 
 ````TSV
 ἐφήβια	celebration on reaching adolescence	ἐφηϐία [gens : ας (ἡ) ]	adolescence ; > ἐφηϐεῖον	Célébration à l'adolescence
@@ -403,7 +436,7 @@ dans tous les dicos et désigne l'*adolescence* et rien d'autre (ou presque).
 On **effacera** donc la traduction du Bailly et on retouchera la traduction
 d'Eulexis pour quelque chose du genre _fête pour célébrer l'adolescence_.
 
-#### Dernier exemple, plus compliqué :
+### Dernier exemple, plus compliqué :
 
 ````TSV
 φύσκος	botellus	2 Φύσκος [gens : ου (ὁ) ]@1 Φύσκος [gens : ου (ἡ) ]	Physkos@Physkos, (v.)	Botellus
@@ -419,8 +452,7 @@ la traduction française de ce mot (qui renvoie d'ailleurs à "botulus").
 On trouve alors *boudin, saucisson, [en gén.] boyau farci*.
 Dans l'article φύσκος du Pape, on a un renvoi à *φύσκη 2*, avec une difficulté
 manifeste liée à ce **2** alors que l'article correspondant ne contient pas de numéro.
-![φύσκη dans Pape sur zeno.org](images_MdE/fuskh_os_Pape.png)
-
+![φύσκη dans Pape sur zeno.org](images_MdE/fuskh_os_Pape.png)\
 Situation d'autant plus compliquée que le Pape donne deux sens bien distincts
 (séparés par un –) et un troisième sens plus ou moins caché (en 2e position).
 Le dernier sens de *callosité ou ampoule dans les mains* est absent du Bailly
