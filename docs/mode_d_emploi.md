@@ -20,7 +20,7 @@ La magie de l'informatique a permis de mouliner le fichier TeX du Bailly.
 J'en ai extrait les traductions françaises de beaucoup de lemmes
 que j'ai ensuite alignées avec les traductions existantes dans Eulexis.
 Le plus difficile reste à faire : **choisir** la _bonne_ traduction pour 
-les ≈100 000 lemmes grecs qu'Eulexis connaît.
+les ~100 000 lemmes grecs qu'Eulexis connaît.
 
 ### Objectifs
 
@@ -40,10 +40,10 @@ Pour ne pas devoir d'emblée affronter les 100 000 lemmes du lexique d'Eulexis,
 j'ai utilisé un fichier d'Helma Dik (de Logeion) qui donne le nombre d'occurrences 
 relevées dans le corpus traité pour les divers lemmes. 
 En se limitant aux lemmes qui apparaissent plus de *cinq* fois, on couvre presque 
-**99%** du corpus avec *seulement* ≈20 000 lemmes. 
+**99%** du corpus avec *seulement* ~20 000 lemmes. 
 Pour se donner un premier objectif facilement accessible, on a préféré recouper
 ces 20 000 lemmes en deux en prenant d'abord ceux dont la fréquence est supérieure à 40.
-C'est donc ce premier lot de ≈6 000 lemmes qu'il faut traiter pour commencer.
+C'est donc ce premier lot de ~6 000 lemmes qu'il faut traiter pour commencer.
 
 Bien que les fichiers à traiter soient des fichiers CSV, **il n'est pas recommandé**
 de les ouvrir et/ou de les éditer en dehors de l'outil conçu pour cela 
@@ -58,9 +58,10 @@ Pour revoir et corriger l'ensemble des traductions d'Eulexis, j'ai développé
 un outil spécial que l'on trouve dans le menu "Extra/Vérifier les traductions".
 S'ouvre alors une boîte de dialogue pour choisir le fichier à traiter.
 Quand ce premier choix est fait,
-on voit apparaître une fenêtre d'édition comme celle-ci :
+on voit apparaître une fenêtre d'édition comme celle-ci (à droite) :
 ![fenêtre d'édition initiale](images_MdE/Image1.png)
-En même temps, s'affichent dans la fenêtre principale d'Eulexis les articles
+En même temps, s'affichent dans la fenêtre principale d'Eulexis 
+(à gauche, en arrière plan) les articles
 de dictionnaire correspondant au lemme traité.
 Le choix des dictionnaires à afficher se fait dans le menu "Dicos".
 Personnellement, je recommande de les afficher **tous** :
@@ -84,10 +85,11 @@ il la met au premier plan plutôt que d'ouvrir un nouveau fichier.
 
 ### Description
 
-Les quatre premières lignes sont informatives et ne peuvent pas être modifiées.
+Les cinq premières lignes sont informatives et ne peuvent pas être modifiées.
 Elles contiennent :
 1. un indicateur de progression (_ici 1/9_) qui donne le numéro du lemme et le nombre total de lemmes à traiter dans ce fichier
 2. les lemmes précédent (à gauche, _ici il est vide_) et suivant (à droite) –cette indication est utile surtout pour les homonymes–
+2. les traductions anglaises des lemmes précédent (à gauche, _ici il est vide_) et suivant (à droite) –cette indication permet d'anticiper pour traiter les homonymes–
 3. le lemme à examiner en caractères grecs
 4. le lemme à examiner en betacode
 
@@ -221,9 +223,7 @@ Alors que le **jaune-orangé**, plus accrocheur, nous prévient qu'il faut redou
 d'attention car la solution proposée n'est qu'approchée.
 Lorsque le fond est **vert** ou **rouge**, il y a plusieurs items 
 dans la comboBox et il **faut** faire un choix supplémentaire entre ces items.
-Le fond 
-<span style="background-color:#A0FFA0; font-weight:bold; ">vert, </span>
-plus doux et apaisant, nous dit que les solutions sont exactes.
+Le fond **vert**, plus doux et apaisant, nous dit que les solutions sont exactes.
 Le fond **rouge**, plus agressif, nous dit que les solutions sont approchées.
 
 *Remarque :* lorsque j'ai trouvé une solution exacte, je ne suis pas allé chercher
@@ -359,8 +359,13 @@ la première solution est acceptable.
 
 ### Exemples d'homonymes
 
-Les cas d'homonymie ne sont pas rares, mais il ne m'a pas été facile d'en dénicher
-un simple :
+Si mon programme de découpage en petits fichiers a fonctionné correctement,
+**tous** les homonymes devraient se trouver grouper.
+Attention, ne sont pas considérés comme homonymes des lemmes qui diffèrent 
+par une majuscule initiale. 
+Par exemple, on aura Ὥρα et ὥρα dans deux fichiers séparés.
+Les cas d'homonymie ne sont pas rares (sans être fréquents : ~8% des cas), 
+mais il ne m'a pas été facile d'en dénicher un simple :
 ````TSV
 στεῖρα1	a ship's keel	2 στεῖρα [gens : ας, adj. f. ]@1 στεῖρα [gens : ης (ἡ) ]	stérile@étrave d'un navire	la quille d'un navire
 στεῖρα2	that has not brought forth young	2 στεῖρα [gens : ας, adj. f. ]@1 στεῖρα [gens : ης (ἡ) ]	stérile@étrave d'un navire	Cela n'a pas donné naissance à de jeunes
@@ -461,4 +466,24 @@ On serait tenté de recopier la traduction du Bailly (pour φύσκη)
 *gros intestin, d’où viande dont on le farcit, boudin,* en ajoutant *saucisson* 
 repris dans l'abrégé. Mais subsiste le doute sur la première partie de cette 
 traduction qui est le *gros intestin*...
+
+### Genre ?
+
+Le pendant de l'exemple précédent est Φύσκος, avec une majuscule :
+````TSV
+Φύσκος	botellus	2 Φύσκος [gens : ου (ὁ) ]@1 Φύσκος [gens : ου (ἡ) ]	Physkos@Physkos, (v.)
+````
+Ici, on a un nouveau problème, puisque le genre de Φύσκος s'est perdu !
+Comment rectifier cela ? Les deux traductions du Bailly sont
+potentiellement correctes et il serait maladroit d'en modifier une pour
+la valider. Il n'y a donc que la traduction d'Eulexis que je peux
+modifier. Et comme la traduction anglaise était erronée (le LSJ ne
+connaît pas ce nom de lieu), il conviendrait de les corriger toutes.
+Écrire quelque chose comme "Physkos (various places)" en Anglais et
+"Physkos (fém. : v. ; masc. : mt. ou fl.)" en Français.
+
+Toutefois, Morfw semble ne le connaître que comme masculin, mais il
+faudrait aller vérifier les huit occurrences... Si c'était vrai, il
+suffirait de valider "2 Φύσκος", sans effacer la traduction de "1 Φύσκος".
+
 
