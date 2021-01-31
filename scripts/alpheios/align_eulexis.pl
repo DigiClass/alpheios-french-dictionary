@@ -39,22 +39,25 @@ while (<$eul>) {
   # if we have a mapping from the eulexis lemma to the lsj lemma, use the lsj lemma
   if ($eul_to_lsj{decode_utf8($lemma)}) {
     for my $lsj (split /\|/, $eul_to_lsj{decode_utf8($lemma)}) {
-      if (exists $eulexis{$lsj}) {
-        $defs_not_taken{$lsj} = $def;
-      } else {
-        $eulexis{$lsj} = $def;
-      }
+      unless (exists $eulexis{$lsj}) {
+        $eulexis{$lsj} = [];
+      } 
+      push @{$eulexis{$lsj}}, $def;
     }
   } else {
     my $entries = parse_lemma($lemma);
     for my $entry (@$entries) {
-      if ($eulexis{$entry}) {
-        $defs_not_taken{$entry} = $def;
-      } else {
-        $eulexis{$entry} = $def;
+      unless (exists $eulexis{$entry}) {
+        $eulexis{$entry} = [];
       }
+      push @{$eulexis{$entry}}, $def;
     }
   }
+}
+
+# aggregate multiple definitions
+for my $entry (keys %eulexis) {
+ $eulexis{$entry} = join "; ", @{$eulexis{$entry}};
 }
 
 
@@ -64,13 +67,13 @@ my %nolsj;
 my %noeul;
 for my $lemma (keys %eulexis) {
   if ($lsj{$lemma}) {
-    $matched{$lemma} = [$eulexis{$lemma},$lsj{$lemma}];
+    $matched{$lemma} = $eulexis{$lemma};
   } elsif ($lsj{lcfirst($lemma)}) {
-    $matched{lcfirst($lemma)} = ['@',''];
+    $matched{lcfirst($lemma)} = '@';
     if ($lsj{'@'. $lemma}) {
-      $matched{'@'. $lemma} = [$eulexis{$lemma}, $lsj{'@'.$lemma}]
+      $matched{'@'. $lemma} = $eulexis{$lemma};
     } else {
-      $matched{'@'. $lemma} = [$eulexis{$lemma}, $lsj{lcfirst($lemma)}]
+      $matched{'@'. $lemma} = $eulexis{$lemma};
     }
   } else {
     $dat{$lemma} = "$eulexis{$lemma}|Bailly";
@@ -80,37 +83,22 @@ for my $lemma (keys %eulexis) {
 
 for my $lemma (keys %lsj) {
   if ($matched{$lemma}) {
-    $dat{$lemma} = "$matched{$lemma}->[0]|Bailly";
+    $dat{$lemma} = "$matched{$lemma}|Bailly";
   } else {
     $dat{$lemma} = "$lsj{$lemma}|LSJ";
     $noeul{$lemma} = $lsj{$lemma};
   }
 }
 
+for my $lemma (keys %matched) {
+  unless ($dat{$lemma}) {
+    $dat{$lemma} = "$matched{$lemma}|Bailly";
+  }
+}
+
 open FILE, ">../../data/bailly-grc-defs.dat";
 for my $lemma (sort keys %dat) {
   print FILE encode_utf8("$lemma|$dat{$lemma}\n");
-}
-
-open FILE, ">../../data/raw/alpheios/matched_eul.csv";
-for my $lemma (sort keys %matched) {
-   print FILE encode_utf8("$lemma\t$matched{$lemma}->[0]\t$matched{$lemma}->[1]\n");
-}
-close FILE;
-open FILE, ">../../data/raw/alpheios/nolsj.csv";
-for my $lemma (sort keys %nolsj) {
-  print FILE encode_utf8("$lemma\t$nolsj{$lemma}\n");
-}
-close FILE;
-open FILE, ">../../data/raw/alpheios/noeul.csv";
-for my $lemma (sort keys %noeul) {
-  print FILE encode_utf8("$lemma\t$noeul{$lemma}\n");
-}
-close FILE;
-
-open FILE, ">../../data/raw/alpheios/dupedefs.csv";
-for my $lemma (sort keys %defs_not_taken) {
-  print FILE encode_utf8("$lemma\t$defs_not_taken{$lemma}\n");
 }
 close FILE;
 
