@@ -20,9 +20,46 @@
 Si le *lemme* n'a été trouvé dans aucun des fichiers, je fais une deuxième tentative en supprimant les signes diacritiques et l'éventuelle majuscule. Pour distinguer les lignes issues de cette deuxième tentative, je les fais commencer par un point d'interrogation et le nombre de mots trouvés est augmenté de 100. 
 Une majorité des *lemmes* a maintenant un candidat unique : **67 505 = 58%** (voir les détails en date du 12 octobre dans [NOTES.md](../NOTES.md)).
 
-* **[data/index_LSJ_Bailly.csv](index_LSJ_Bailly.csv)** est l'index commun du LSJ (version de Chaeréphon) et du Bailly. La première colonne est la base commune : l'entrée sans diacritique, ni majuscule, ni indice d'homonymie. La deuxième colonne donne l'entrée du LSJ et la troisième l'entrée du Bailly. En cas d'entrées multiples, j'utilise autant de ligne que nécessaire.
+* **[data/index_LSJ_Bailly.csv](index_LSJ_Bailly.csv)** est l'index commun du LSJ (version de Chaeréphon) et du Bailly. La première colonne est la base commune : l'entrée sans diacritique, ni majuscule, ni indice d'homonymie. La deuxième colonne donne l'entrée du LSJ et la troisième l'entrée du Bailly. En cas d'entrées multiples, j'utilise autant de lignes que nécessaire.
 
 * **[data/betunicode_gr.csv](betunicode_gr.csv)** est le tableau de conversion betacode-Unicode que j'utilise dans Eulexis. Les lignes contenant un point d'exclamation "!" sont des commentaires et doivent être ignorées. Il s'agit de remplacer séquentiellement les éléments de la première colonne par ceux de la troisième, ou réciproquement. L'ordre a son importance et le β initial (si on utilise le ϐ) ou le ς final doivent être traités à part.
+
+* **[data/Eulexis_Bailly_sens.csv](Eulexis_Bailly_sens.csv)** is the result of the alignment of Bailly with the lemmata of Eulexis. It gives also the translations, when I found them. A line has 10 fields, named on the first line:
+- numero    Just a number, **BUT** has before it : a "*" if multiple candidates, a "!" if none or a "?" if the candidate(s) has/have an approximate spelling (uppercase, accent etc.)
+- lemme    the lemma as it is in Eulexis (vowels with oxia, not with tonos)
+- betacode    the lemma in betacode
+- trad_En    the English translation found in Eulexis
+- lem_tr    the found lemma (_lemme trouvé_) which can be different from the required lemma if the line begins with ?
+- sens    The French translation extracted from Bailly
+- longueur    the size of the previous column
+- indications    morphological data
+- occurrences    number of occurrences as given in Helma's file
+- nombre    number of solutions if < 100, when > 99, it means that I have looked for approximate solutions because I had found no exact ones. I did not look for approximate solutions when I had exact ones. In some cases, it is the good lemma with different graphical representations. But sometimes it is just wrong.
+
+Well, the "lemme trouvé" hides more information, telling where the translation comes from.
+- single lemma = main entry : Bailly_sens.csv
+- two lemmata with a ">" in between : Bailly_renv.csv
+- two lemmata with a "<" in between : Bailly_es_sens.csv
+- three lemmata with "<" and ">" : Bailly_es_renv.csv
+- more complex with "(in lemma)" : Bailly_subst.csv
+
+Examples and explanations :
+- αἱ Ἅρπυιαι (in Ἅρπυια) : in the entry Ἅρπυια, I have found the plural, αἱ Ἅρπυιαι, with a special meaning
+- Ἅφαιστος > Ἥφαιστος : Bailly has an entry Ἅφαιστος, with no translation, just a reference to the "main entry" Ἥφαιστος, which gives the details.
+- Ἁλίη < Ἁλία : in the entry Ἁλία, I have found a second entry Ἁλίη (entrée secondaire, \es in the TeX file)
+- ἥρῳ < ἥρω > ἥρως : combination of the previous two, the entry ἥρω refers to ἥρως and contains the form ἥρῳ
+
+In the case of >, the translation I give is the one of the target-lemma. In the case of multiple references, my program was not able to follow the "jeu de piste", and you'll find some "???? Renvoi sans issue ????" (stupid play on "voie sans issue"=dead-end). For instance, the lines 1607 and 1609 are
+```
+Ἀμπρακιήτης > Ἀμπρακιώτης
+Ἀμπρακιώτης > Ἀμπρακιεύς
+```
+The second one succeeded as I had a translation for Ἀμπρακιεύς in Bailly_sens.csv, but not the first one.
+
+The morphological data has to be handled with care in the cases of "subst" or of "es". In the example of "Ἁλίη < Ἁλία", it gives the genitive of the second, while Bailly gave two different genitives :
+`Ἁλία, ας, ion. Ἁλίη, ης (ἡ) [ᾰλ] Halia ou Haliè, Néréide, IL. 18, 40 ; HÉS. Th. 245, etc.`
+
+Clearly, the file `trad_gr_en_fr_de_travail_3.csv` contains less information. Esp. when an adjective and a noun share the same form. In the work of LASLA with Latin texts, they have systematically distinguished these cases with two different lemmata, for instance amicus1 and amicus2... I don't know yet what will be updated with the corrected data files. For the moment, I was focusing on the lexicon used by Eulexis, which is mainly the file `trad_gr_en_fr_de_travail_3.csv`. It is of primary interest for me and it answers the original request to give French short definitions.
 
 ## Raw data
 
@@ -70,6 +107,8 @@ OK
 Les dernières lignes (qui commencent par "<<") sont issues de mon traitement (voir le fichier [NOTES.md](../NOTES.md)).
 
 #### Fichiers divers
+
+`trad_gr_en_fr_de_travail_6.csv` est une nouvelle version du lexique d'Eulexis. J'y ai mis les traductions françaises issues du Bailly lorsque la traduction était absente **et** qu'il n'y avait qu'une seule solution, exacte qui plus est. Entretemps, j'ai compris comment récupérer quelques traductions dans le LSJ qui étaient restées vides. Pour cela, j'ai suivi les renvois qui étaient, pour la plupart, de la forme **=**. J'ai parcouru rapidement les traductions trouvées à la recherche de grosses bêtises. De toute façon, toutes ces traductions vont passer à la correction...
 
 `trad_gr_en_fr_de_travail_3.csv` est le fichier *de travail* qui correspond au lexique d'Eulexis. Le format des données CSV (Tab comme séparateur) est composé de 5 champs :
 - le lemme d'Eulexis en caractères grecs
