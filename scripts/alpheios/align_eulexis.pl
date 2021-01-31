@@ -12,6 +12,22 @@ my %dat;
 my %eul_to_lsj;
 my %eulexis;
 my %defs_not_taken;
+my %lsj;
+
+while (<$lsj>) {
+  chomp;
+  my ($lemma, $def) = split /\|/;
+  $lemma = decode_utf8( $lemma);
+  $lsj{$lemma} = $def;
+}
+
+while (<$eul_to_lsj>) {
+  chomp;
+  my ($el, $lsj) = split /\t/;
+  $el = decode_utf8($el);
+  $lsj = decode_utf8($lsj);
+  $eul_to_lsj{$el} = $lsj;
+}
 while (<$eul>) {
   chomp;
   my $line = $_;
@@ -21,9 +37,9 @@ while (<$eul>) {
   next unless $def;
 
   # if we have a mapping from the eulexis lemma to the lsj lemma, use the lsj lemma
-  if ($eul_to_lsj{$lemma}) {
-    for my $lsj (split /\|/, $eul_to_lsj{$lemma}) {
-      if ($eulexis{$lsj}) {
+  if ($eul_to_lsj{decode_utf8($lemma)}) {
+    for my $lsj (split /\|/, $eul_to_lsj{decode_utf8($lemma)}) {
+      if (exists $eulexis{$lsj}) {
         $defs_not_taken{$lsj} = $def;
       } else {
         $eulexis{$lsj} = $def;
@@ -39,22 +55,6 @@ while (<$eul>) {
       }
     }
   }
-}
-
-my %lsj;
-while (<$eul_to_lsj>) {
-  chomp;
-  my ($el, $lsj) = split /\t/;
-  $el = decode_utf8($el);
-  $lsj = decode_utf8($lsj);
-  $eul_to_lsj{$el} = $lsj;
-}
-
-while (<$lsj>) {
-  chomp;
-  my ($lemma, $def) = split /\|/;
-  $lemma = decode_utf8( $lemma);
-  $lsj{$lemma} = $def;
 }
 
 
