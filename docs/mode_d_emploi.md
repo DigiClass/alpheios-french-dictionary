@@ -58,8 +58,8 @@ Pour revoir et corriger l'ensemble des traductions d'Eulexis, j'ai développé
 un outil spécial que l'on trouve dans le menu "Extra/Vérifier les traductions".
 S'ouvre alors une boîte de dialogue pour choisir le fichier à traiter.
 Quand ce premier choix est fait,
-on voit apparaître une fenêtre d'édition comme celle-ci (à droite) :
-![fenêtre d'édition initiale](images_MdE/Image1.png)
+on voit apparaître une fenêtre d'édition comme celle-ci (à droite) :\
+![fenêtre d'édition initiale](images_MdE/Image1.png)   
 En même temps, s'affichent dans la fenêtre principale d'Eulexis 
 (à gauche, en arrière plan) les articles
 de dictionnaire correspondant au lemme traité.
@@ -67,19 +67,20 @@ Le choix des dictionnaires à afficher se fait dans le menu "Dicos".
 Personnellement, je recommande de les afficher **tous** :
 en effet, ils peuvent contenir des informations complémentaires et précieuses.
 
-La boîte de dialogue s'ouvre, par défaut, au milieu de la fenêtre principale.
-Il vaut donc **mieux la déplacer** pour que la lecture des dictionnaires puisse se faire 
+La boîte de dialogue s'ouvre, par défaut, sur la droite de la fenêtre principale.
+On peut la déplacer pour que la lecture des dictionnaires puisse se faire 
 sans qu'il soit nécessaire de changer de fenêtre active (sur Mac, on peut faire 
 défiler le contenu d'une fenêtre sans qu'elle soit active).
-Cela permet aussi de revenir par un simple clic sur la boîte de dialogue 
+Il **vaut mieux** ne pas la centrer sur la fenêtre principale.
+Cela permet de revenir par un simple clic sur la boîte de dialogue 
 si on l'a quittée pour aller faire autre chose (en particulier, suivre un renvoi 
 dans les dictionnaires). On peut évidemment faire d'autres choses sans fermer
 cette boîte de dialogue : consulter le LSJ sur Logeion (le LSJ d'Eulexis a *perdu*
 les numéros des sens), aller voir le Pape sur Zeno.org (l'original), parcourir
 quelque fichier que l'on a sur l'ordinateur ou même répondre à un mail urgent.
 Si la boîte de dialogue a été enterrée sous d'autres fenêtres, 
-il est possible de la remettre au premier plan en retournant
-dans le menu "Extra/Vérifier les traductions".
+il est possible de la remettre au premier plan en retournant d'abord dans Eulexis,
+puis dans le menu "Extra/Vérifier les traductions".
 Si le programme voit qu'il y a une boîte de dialogue déjà ouverte,
 il la met au premier plan plutôt que d'ouvrir un nouveau fichier.
 
@@ -87,7 +88,7 @@ il la met au premier plan plutôt que d'ouvrir un nouveau fichier.
 
 Les cinq premières lignes sont informatives et ne peuvent pas être modifiées.
 Elles contiennent :
-1. un indicateur de progression (_ici 1/9_) qui donne le numéro du lemme et le nombre total de lemmes à traiter dans ce fichier
+1. un indicateur de progression (_ici 1/11_) qui donne le numéro du lemme et le nombre total de lemmes à traiter dans ce fichier
 2. les lemmes précédent (à gauche, _ici il est vide_) et suivant (à droite) –cette indication est utile surtout pour les homonymes–
 2. les traductions anglaises des lemmes précédent (à gauche, _ici il est vide_) et suivant (à droite) –cette indication permet d'anticiper pour traiter les homonymes–
 3. le lemme à examiner en caractères grecs
@@ -211,8 +212,9 @@ se produit pour 8% des lemmes. Les 2% restant se partagent équitablement entre
 les cas où je n'ai pas trouvé le lemme dans le Bailly et ceux où il y a une ou
 plusieurs **solutions approchées**. J'ai enrichi le second lot avec les cas approchés
 trouvés dans l'ensemble des lemmes (y compris ceux de fréquence faible), 
-si bien que les pourcentages y seront différents. Les mots que je n'ai pas trouvés 
-dans le Bailly sont plus aussi nombreux parmi les lemmes moins fréquents.
+si bien que les pourcentages y seront différents. 
+Par ailleurs, les mots que je n'ai pas trouvés 
+dans le Bailly sont plus nombreux parmi les lemmes moins fréquents.
 
 Pour que le correcteur sache immédiatement si la comboBox est peuplée ou pas, 
 je lui ai donné un fond de couleur.
@@ -284,6 +286,12 @@ La réponse est évidemment non. En effet, lorsque je choisis la traduction exis
 dans Eulexis, je n'apporte aucune information sur le Bailly. En revanche, en choisissant
 la traduction du Bailly, je dis implicitement que cette entrée du Bailly correspond
 au lemme recherché. Je donne plus bas quelques exemples *représentatifs*.
+
+J'ai ajouté des garde-fous à la validation. 
+Ainsi, le programme demande une confirmation lorsque :
+- la traduction choisie est vide
+- on a choisi de remettre le choix à plus tard.
+On peut alors confirmer cette validation ou revenir à la boîte de dialogue.
 
 #### Le bouton de retour
 
