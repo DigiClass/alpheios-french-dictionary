@@ -1,18 +1,14 @@
 # Workflow
 
-[toc]
-
 ## Pre-requisites
 
-- download the special version of Eulexis for your platform: 
-  - Windows
-  - MacOS
+- download the special version of Eulexis for your platform for Windows or MacOS (you should have received the download link by email)
 - make sure you have access to the [correction assignment spreadsheet](https://docs.google.com/spreadsheets/d/1b5ZhASSGfPxrvmyaOwH9x513GdBgsw9IsRWmZQ9vEoc/edit#gid=0) (open an issue in this repository if you don't and you'd like to help with the corrections)
 
-## 0. Make a local copy of the data
+## 0. Get a local copy of the data
 
-- download GitHub Desktop
-- ...
+- Clone the repository <https://github.com/DigiClass/alpheios-french-dictionary>
+- Alternatively, you can get a copy of the data via Dropbox
 
 ## 1. Check corrections assigned to you
 
@@ -21,7 +17,7 @@
 
 ## 2. Correct some files
 
-- Locate the data folder with GitHub desktop
+- Locate the data folder inside your local copy of the repository (`alpheios-french-dictionary/data/`)
 - Launch Eulexis (see these instructions to use the correction tool in Eulexis)
 - when prompted by Eulexis, navigate to `alpheios-french-dictionary/data/corrections/first-batch/todo/`
 
@@ -38,6 +34,6 @@
 
 ## 4. Share your corrections with the others
 
-It's up to you to decide when to do this: it can be after each file corrected, or once you've corrected them all.
+It's up to you to decide when to do this: it can be after each file corrected, or once you've corrected them all. Use `git add ...`, `git commit ...` and `git push origin master` to push your changes to the remote GH repository.
 
-- TODO: add steps for `git add`, `git commit` and `git push` using GH Desktop
+Alternatively, you can share your corrections via Dropbox. 
